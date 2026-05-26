@@ -381,7 +381,7 @@ function detailHtml(s){
     let vc='na',display='N/A',sfxHtml='';
     if(fv!==null){const n=+raw;vc=n>0.001?'pos':(n<-0.001?'neg':'');display=fv;sfxHtml='<span class="ind-sfx">'+sfx+'</span>';}
     const dimKey=IND_TO_DIM[key]||'overall';
-    return'<div class="ind-card" onclick="openExplain(''+dimKey+'')" title="点击查看说明">'+
+    return'<div class="ind-card" data-dim="'+dimKey+'" onclick="openExplain(this.dataset.dim)" title="点击查看说明">'+
       '<div class="ind-label">'+label+'</div>'+
       '<div class="ind-val '+vc+'">'+display+sfxHtml+'</div></div>';
   }).join('');
