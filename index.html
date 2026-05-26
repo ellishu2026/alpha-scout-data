@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
+
 :root {
   --white:#fff; --ink:#111; --ink2:#555; --ink3:#999; --ink4:#ccc;
   --rule:#e8e8e4; --rule2:#f2f2ef;
@@ -21,183 +22,198 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--white);color:var(--ink);font-family:var(--font-mono);
-      font-size:12.5px;line-height:1.5;-webkit-font-smoothing:antialiased}
-
-/* Header */
+     font-size:12.5px;line-height:1.5;-webkit-font-smoothing:antialiased}
 header{border-bottom:2px solid var(--ink);padding:18px 32px 14px;
-        display:flex;align-items:center;flex-wrap:wrap;gap:10px}
+       display:flex;align-items:center;flex-wrap:wrap;gap:10px}
 .logo{font-family:var(--font-serif);font-size:26px;font-weight:700;
-       letter-spacing:-.3px;line-height:1;margin-right:16px}
+      letter-spacing:-.3px;line-height:1;margin-right:16px}
 .logo em{font-style:normal;color:var(--c80)}
 .hm{display:flex;gap:18px;flex-wrap:wrap;align-items:center;
-     margin-left:auto;font-size:10.5px;color:var(--ink3)}
+    margin-left:auto;font-size:10.5px;color:var(--ink3)}
 .hm b{color:var(--ink);font-weight:500}
 .ver{font-size:10px;color:var(--ink4);border:1px solid var(--rule);
-      padding:2px 7px;border-radius:3px}
-
-/* Toolbar */
+     padding:2px 7px;border-radius:3px}
 .toolbar{border-bottom:1px solid var(--rule);padding:10px 32px 0}
 .legend{display:flex;gap:18px;flex-wrap:wrap;align-items:center;
-         margin-bottom:10px;font-size:11px;color:var(--ink2)}
+        margin-bottom:10px;font-size:11px;color:var(--ink2)}
 .leg-item{display:flex;align-items:center;gap:5px}
 .leg-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
 .filter-row{display:flex;gap:6px;flex-wrap:wrap;padding-bottom:12px;align-items:center}
 .pill{font-family:var(--font-mono);font-size:11.5px;padding:5px 16px;
-       border-radius:var(--rp);border:1.5px solid var(--rule);
-       background:var(--pill-bg);color:var(--ink2);cursor:pointer;
-       transition:all .12s;white-space:nowrap}
+      border-radius:var(--rp);border:1.5px solid var(--rule);
+      background:var(--pill-bg);color:var(--ink2);cursor:pointer;
+      transition:all .12s;white-space:nowrap}
 .pill:hover{border-color:var(--ink3);color:var(--ink)}
 .pill.active{background:var(--pill-act);border-color:var(--pill-act);color:#fff;font-weight:500}
 .pill-wl.active{background:var(--c80);border-color:var(--c80)}
 .filter-sep{width:1px;background:var(--rule);margin:0 2px;align-self:stretch;min-height:28px}
-
-/* Dropped banner */
 #dropped-bar{display:none;padding:8px 32px;
-              background:#fef9ec;border-bottom:1px solid #fde68a;
-              font-size:11px;color:#92400e}
+             background:#fef9ec;border-bottom:1px solid #fde68a;
+             font-size:11px;color:#92400e}
 #dropped-bar b{color:#78350f}
-
-/* WL bar */
 #wl-bar{border-bottom:1px solid var(--rule);padding:10px 32px;
-         background:var(--row-alt);display:none}
+        background:var(--row-alt);display:none}
 .wl-top{display:flex;align-items:center;margin-bottom:7px;gap:10px}
 .wl-label{font-size:9.5px;text-transform:uppercase;letter-spacing:.12em;color:var(--ink4)}
 .wl-mgr-btn{font-size:10px;padding:2px 10px;border:1px solid var(--rule);
-             border-radius:var(--rp);background:var(--white);color:var(--ink3);
-             cursor:pointer;margin-left:auto;transition:all .12s}
+            border-radius:var(--rp);background:var(--white);color:var(--ink3);
+            cursor:pointer;margin-left:auto;transition:all .12s}
 .wl-mgr-btn:hover{border-color:var(--ink3);color:var(--ink)}
 .wl-chips{display:flex;gap:6px;flex-wrap:wrap}
 .wl-chip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--rule);
-          padding:4px 12px;background:var(--white);border-radius:var(--rp);
-          cursor:pointer;font-size:11.5px;transition:border-color .1s}
+         padding:4px 12px;background:var(--white);border-radius:var(--rp);
+         cursor:pointer;font-size:11.5px;transition:border-color .1s}
 .wl-chip:hover{border-color:var(--ink3)}
 .wl-chip.dim{opacity:.4;cursor:default}
 .wl-tick{font-weight:500;color:var(--ink)}
-
-/* Table */
 .table-wrap{overflow-x:auto}
-table{width:100%;border-collapse:collapse;min-width:980px}
+table{width:100%;border-collapse:collapse;min-width:860px}
 thead th{font-size:9.5px;text-transform:uppercase;letter-spacing:.08em;
-          color:var(--ink3);font-weight:400;padding:9px 10px 8px;
-          border-bottom:1px solid var(--rule);text-align:left;white-space:nowrap;
-          background:var(--white);position:sticky;top:0;z-index:2}
+         color:var(--ink3);font-weight:400;padding:9px 10px 8px;
+         border-bottom:1px solid var(--rule);text-align:left;white-space:nowrap;
+         background:var(--white);position:sticky;top:0;z-index:2}
 thead th.r{text-align:right}
+thead th.clickable{cursor:pointer;text-decoration:underline dotted;
+                   text-underline-offset:3px}
+thead th.clickable:hover{color:var(--ink)}
 tbody tr.stock-row{border-bottom:1px solid var(--rule2);cursor:pointer;transition:background .08s}
 tbody tr.stock-row:nth-child(4n+1),
 tbody tr.stock-row:nth-child(4n+2){background:var(--row-alt)}
-tbody tr.stock-row:hover   {background:var(--row-hover)!important}
-tbody tr.stock-row.is-wl   {border-left:2px solid var(--c80)}
+tbody tr.stock-row:hover{background:var(--row-hover)!important}
+tbody tr.stock-row.is-wl{border-left:2px solid var(--c80)}
 tbody tr.stock-row.expanded{background:var(--row-exp)!important}
 td{padding:7px 10px;vertical-align:middle;white-space:nowrap}
 .td-rank{color:var(--ink4);font-size:11px;width:28px;text-align:right;padding-right:4px}
 .td-chg{width:36px;text-align:center;font-size:10px;font-weight:500}
-.chg-new{color:var(--c90)} .chg-up{color:var(--c80)} .chg-dn{color:var(--c60)} .chg-flat{color:var(--ink4)}
+.chg-new{color:var(--c90)}.chg-up{color:var(--c80)}.chg-dn{color:var(--c60)}.chg-flat{color:var(--ink4)}
 .td-ticker{font-weight:500;font-size:13px;color:var(--ink);width:60px}
 .wl-mark{display:inline-block;width:4px;height:4px;border-radius:50%;
-          background:var(--c80);margin-right:5px;vertical-align:middle;margin-bottom:2px}
+         background:var(--c80);margin-right:5px;vertical-align:middle;margin-bottom:2px}
 .td-name{color:var(--ink2);font-size:11.5px;max-width:160px;overflow:hidden;text-overflow:ellipsis}
-
-/* Sector badge */
 .sbadge{display:inline-block;font-size:10px;padding:2px 8px;
-         border-radius:var(--rp);font-weight:500;white-space:nowrap}
-.sb-科技{background:#eff6ff;color:#1d4ed8} .sb-医疗{background:#f0fdf4;color:#15803d}
-.sb-金融{background:#fff7ed;color:#c2410c} .sb-消费{background:#fdf4ff;color:#7e22ce}
-.sb-工业{background:#f8fafc;color:#475569} .sb-公用{background:#ecfdf5;color:#065f46}
-.sb-能源{background:#fefce8;color:#854d0e} .sb-地产{background:#fff1f2;color:#9f1239}
-.sb-材料{background:#f0fdfa;color:#0f766e} .sb-通信{background:#faf5ff;color:#6b21a8}
+        border-radius:var(--rp);font-weight:500;white-space:nowrap}
+.sb-科技{background:#eff6ff;color:#1d4ed8}.sb-医疗{background:#f0fdf4;color:#15803d}
+.sb-金融{background:#fff7ed;color:#c2410c}.sb-消费{background:#fdf4ff;color:#7e22ce}
+.sb-工业{background:#f8fafc;color:#475569}.sb-公用{background:#ecfdf5;color:#065f46}
+.sb-能源{background:#fefce8;color:#854d0e}.sb-地产{background:#fff1f2;color:#9f1239}
+.sb-材料{background:#f0fdfa;color:#0f766e}.sb-通信{background:#faf5ff;color:#6b21a8}
 .sb-其他{background:#f9fafb;color:#6b7280}
-
-/* Mcap + FCF */
 .td-mcap{text-align:right;font-size:11.5px;color:var(--ink2);padding-right:10px}
 .td-fcf{text-align:right;padding-right:10px}
 .fcf-wrap{display:inline-flex;flex-direction:column;align-items:flex-end;line-height:1.3}
 .fcf-abs{font-size:11.5px;color:var(--ink)}
-.fcf-yoy.pos{color:var(--c90)} .fcf-yoy.neg{color:var(--c60)} .fcf-yoy.na{color:var(--ink4)}
 .fcf-yoy{font-size:10px}
-
-/* Score cell */
+.fcf-yoy.pos{color:var(--c90)}.fcf-yoy.neg{color:var(--c60)}.fcf-yoy.na{color:var(--ink4)}
 .td-score{text-align:right;padding-right:10px}
 .sw{display:inline-flex;align-items:center;gap:5px;justify-content:flex-end}
 .sval{font-size:12.5px;font-weight:500;min-width:32px;text-align:right;letter-spacing:-.2px}
 .sbar{width:32px;height:2px;background:var(--rule);border-radius:1px;overflow:hidden;flex-shrink:0}
 .sbar-fill{height:100%;border-radius:1px;width:0;transition:width .7s cubic-bezier(.16,1,.3,1)}
-.c90{color:var(--c90)} .c90 .sbar-fill{background:var(--bar-90)}
-.c80{color:var(--c80)} .c80 .sbar-fill{background:var(--bar-80)}
-.c70{color:var(--c70)} .c70 .sbar-fill{background:var(--bar-70)}
-.c60{color:var(--c60)} .c60 .sbar-fill{background:var(--bar-60)}
+.c90{color:var(--c90)}.c90 .sbar-fill{background:var(--bar-90)}
+.c80{color:var(--c80)}.c80 .sbar-fill{background:var(--bar-80)}
+.c70{color:var(--c70)}.c70 .sbar-fill{background:var(--bar-70)}
+.c60{color:var(--c60)}.c60 .sbar-fill{background:var(--bar-60)}
 .cna{color:var(--ink4)}
-
-
-/* DQ */
 .td-dq{text-align:right}
 .dq{display:inline-block;font-size:9px;text-transform:uppercase;
-     letter-spacing:.06em;padding:1px 5px;border-radius:3px;font-weight:500;border:1px solid transparent}
+    letter-spacing:.06em;padding:1px 5px;border-radius:3px;font-weight:500;border:1px solid transparent}
 .dq-h{color:#15803d;border-color:#bbf7d0;background:#f0fdf4}
 .dq-m{color:#b45309;border-color:#fde68a;background:#fffbeb}
 .dq-l{color:#b91c1c;border-color:#fecaca;background:#fef2f2}
-
-/* Arrow */
 .td-arr{width:18px;text-align:right;padding-right:10px}
 .arr-icon{display:inline-block;font-size:8px;color:var(--ink4);transition:transform .18s}
 tr.expanded .arr-icon{transform:rotate(90deg);color:var(--ink2)}
-
-/* Detail */
 .detail-row{display:none}
 .detail-row.open{display:table-row}
 .detail-cell{padding:0 10px 16px 52px;background:var(--row-exp);border-bottom:1px solid var(--rule)}
 .detail-rs{font-size:11px;color:var(--ink2);margin-top:10px;padding:6px 10px;
-            background:var(--white);border:1px solid var(--rule);
-            border-radius:4px;display:inline-block}
-.ind-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
-           gap:1px;background:var(--rule);border:1px solid var(--rule);
-           margin-top:8px;max-width:900px}
-.ind-card{background:var(--white);padding:9px 11px}
-.ind-label{font-size:9.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink3);margin-bottom:3px}
+           background:var(--white);border:1px solid var(--rule);
+           border-radius:4px;display:inline-block}
+.ind-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));
+          gap:1px;background:var(--rule);border:1px solid var(--rule);
+          margin-top:8px;max-width:900px}
+.ind-card{background:var(--white);padding:9px 11px;cursor:pointer}
+.ind-card:hover{background:var(--row-alt)}
+.ind-label{font-size:9.5px;text-transform:uppercase;letter-spacing:.06em;
+           color:var(--ink3);margin-bottom:3px}
 .ind-val{font-size:16px;font-weight:300;letter-spacing:-.5px;line-height:1}
-.ind-val.pos{color:var(--c90)} .ind-val.neg{color:var(--c60)} .ind-val.na{color:var(--ink4);font-size:12px}
+.ind-val.pos{color:var(--c90)}.ind-val.neg{color:var(--c60)}.ind-val.na{color:var(--ink4);font-size:12px}
 .ind-sfx{font-size:10px;color:var(--ink3);margin-left:1px}
-
-/* Empty / Footer */
 #empty{padding:64px 32px;text-align:center;color:var(--ink4);
-        font-size:11px;display:none;letter-spacing:.08em;text-transform:uppercase}
+       font-size:11px;display:none;letter-spacing:.08em;text-transform:uppercase}
 footer{border-top:1px solid var(--rule);padding:12px 32px;font-size:10px;color:var(--ink4)}
-
-/* Modal */
+/* 自选股 Modal */
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);
                z-index:100;align-items:center;justify-content:center}
 .modal-overlay.open{display:flex}
 .modal{background:var(--white);border:1px solid var(--rule);border-radius:6px;
-        padding:24px 28px;width:420px;max-width:95vw;max-height:85vh;
-        overflow-y:auto;box-shadow:0 8px 32px rgba(0,0,0,.12)}
+       padding:24px 28px;width:420px;max-width:95vw;max-height:85vh;
+       overflow-y:auto;box-shadow:0 8px 32px rgba(0,0,0,.12)}
 .modal-title{font-family:var(--font-serif);font-size:20px;font-weight:700;margin-bottom:16px}
 .modal-close{float:right;background:none;border:none;font-size:18px;cursor:pointer;color:var(--ink3)}
 .wl-list-item{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid var(--rule2)}
 .wl-list-tick{font-weight:500;font-size:13px;flex:1}
 .wl-list-score{font-size:12px;min-width:40px;text-align:right}
 .wl-del-btn{font-size:11px;padding:2px 8px;border:1px solid var(--rule);border-radius:3px;
-             background:none;color:var(--ink3);cursor:pointer;transition:all .1s}
+            background:none;color:var(--ink3);cursor:pointer}
 .wl-del-btn:hover{border-color:var(--c60);color:var(--c60)}
 .modal-add{display:flex;gap:8px;margin:12px 0}
 .modal-input{flex:1;border:1.5px solid var(--rule);border-radius:3px;padding:6px 10px;
-              font-family:var(--font-mono);font-size:12.5px;outline:none}
+             font-family:var(--font-mono);font-size:12.5px;outline:none}
 .modal-input:focus{border-color:var(--ink3)}
 .modal-btn{padding:6px 14px;border-radius:3px;border:none;font-family:var(--font-mono);
-            font-size:12px;cursor:pointer;font-weight:500}
+           font-size:12px;cursor:pointer;font-weight:500}
 .modal-btn-add{background:var(--ink);color:#fff}
 .modal-msg{font-size:11px;color:var(--ink3);margin-top:8px;min-height:16px;text-align:center}
 .modal-note{font-size:10px;color:var(--ink4);margin-top:10px;line-height:1.6;
-             border-top:1px solid var(--rule2);padding-top:10px}
-
+            border-top:1px solid var(--rule2);padding-top:10px}
+/* 字段解释 Modal */
+.exp-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);
+             z-index:200;align-items:center;justify-content:center}
+.exp-overlay.open{display:flex}
+.exp-modal{background:var(--white);border:1px solid var(--rule);border-radius:6px;
+           padding:28px 32px;width:580px;max-width:96vw;max-height:90vh;
+           overflow-y:auto;box-shadow:0 12px 40px rgba(0,0,0,.15)}
+.exp-close{float:right;background:none;border:none;font-size:20px;cursor:pointer;color:var(--ink3)}
+.exp-close:hover{color:var(--ink)}
+.exp-lock{text-align:center;padding:32px 0}
+.exp-lock p{font-size:12px;color:var(--ink3);margin-bottom:16px}
+.exp-lock input{border:1.5px solid var(--rule);border-radius:4px;padding:8px 14px;
+                font-family:var(--font-mono);font-size:13px;outline:none;
+                text-align:center;letter-spacing:.1em;width:200px;display:block;margin:0 auto 10px}
+.exp-lock input:focus{border-color:var(--ink3)}
+.exp-lock button{display:block;width:200px;margin:0 auto;padding:8px;
+                 background:var(--ink);color:#fff;border:none;border-radius:4px;
+                 font-family:var(--font-mono);font-size:12px;cursor:pointer}
+.exp-lock .exp-err{color:var(--c60);font-size:11px;margin-top:8px}
+.exp-dim-title{font-family:var(--font-serif);font-size:22px;font-weight:700;
+               color:var(--ink);margin-bottom:4px}
+.exp-dim-sub{font-size:11px;color:var(--ink3);margin-bottom:20px;line-height:1.6}
+.exp-ind{border:1px solid var(--rule);border-radius:4px;margin-bottom:12px;overflow:hidden}
+.exp-ind-hd{background:var(--row-alt);padding:10px 14px;
+            display:flex;align-items:baseline;justify-content:space-between;
+            border-bottom:1px solid var(--rule)}
+.exp-ind-hd-name{font-weight:500;font-size:12.5px;color:var(--ink)}
+.exp-ind-hd-wt{font-size:10px;color:var(--ink3)}
+.exp-ind-body{padding:12px 14px;font-size:12px;line-height:1.8;color:var(--ink2)}
+.exp-ind-body b{color:var(--ink);font-weight:500}
+.exp-formula{background:var(--row-alt);border:1px solid var(--rule2);border-radius:3px;
+             padding:6px 12px;font-family:var(--font-mono);font-size:11.5px;
+             color:var(--ink);margin:6px 0;display:block}
+.exp-tbl{width:100%;border-collapse:collapse;margin-top:8px;font-size:11px}
+.exp-tbl th{text-align:left;color:var(--ink3);font-weight:400;
+            padding:3px 8px;border-bottom:1px solid var(--rule)}
+.exp-tbl td{padding:3px 8px;color:var(--ink2)}
+.exp-tbl tr:nth-child(even){background:var(--row-alt)}
 @media(max-width:640px){
-  header{padding:14px 16px 12px} .toolbar{padding:10px 16px 0}
-  #wl-bar{padding:10px 16px} .logo{font-size:20px}
-  .td-name,.td-mcap{display:none} td{padding:6px 6px}
-  thead th{padding:8px 6px 7px} .detail-cell{padding-left:18px}
-}
+  header{padding:14px 16px 12px}.toolbar{padding:10px 16px 0}
+  #wl-bar{padding:10px 16px}.logo{font-size:20px}
+  .td-name,.td-mcap{display:none}td{padding:6px 6px}
+  thead th{padding:8px 6px 7px}.detail-cell{padding-left:18px}}
+
 </style>
 </head>
 <body>
-
 <header>
   <div class="logo">Alpha<em>Scout</em></div>
   <div class="hm">
@@ -208,62 +224,56 @@ footer{border-top:1px solid var(--rule);padding:12px 32px;font-size:10px;color:v
     <span class="ver" id="js-ver">v2.0</span>
   </div>
 </header>
-
 <div class="toolbar">
   <div class="legend">
-    <div class="leg-item"><div class="leg-dot" style="background:var(--bar-90)"></div><span>≥90 卓越</span></div>
-    <div class="leg-item"><div class="leg-dot" style="background:var(--bar-80)"></div><span>≥80 优秀</span></div>
-    <div class="leg-item"><div class="leg-dot" style="background:var(--bar-70)"></div><span>≥70 良好</span></div>
+    <div class="leg-item"><div class="leg-dot" style="background:var(--bar-90)"></div><span>&#8805;90 卓越</span></div>
+    <div class="leg-item"><div class="leg-dot" style="background:var(--bar-80)"></div><span>&#8805;80 优秀</span></div>
+    <div class="leg-item"><div class="leg-dot" style="background:var(--bar-70)"></div><span>&#8805;70 良好</span></div>
     <div class="leg-item"><div class="leg-dot" style="background:var(--bar-60)"></div><span>&lt;70 偏弱</span></div>
   </div>
   <div class="filter-row" id="filter-row">
     <button class="pill active" data-s="ALL" onclick="setFilter('ALL')">全部</button>
-    <button class="pill pill-wl" id="pill-wl" data-s="WL" onclick="setFilter('WL')"
-            style="display:none">自选</button>
+    <button class="pill pill-wl" id="pill-wl" data-s="WL" onclick="setFilter('WL')" style="display:none">自选</button>
     <span class="filter-sep"></span>
   </div>
 </div>
-
 <div id="dropped-bar"></div>
-
 <div id="wl-bar">
   <div class="wl-top">
     <span class="wl-label">自选股</span>
-    <button class="wl-mgr-btn" onclick="openModal()">⚙ 管理自选股</button>
+    <button class="wl-mgr-btn" onclick="openModal()">&#9881; 管理自选股</button>
   </div>
   <div class="wl-chips" id="wl-chips"></div>
 </div>
-
 <div class="table-wrap">
-  <table>
-    <thead>
-      <tr>
-        <th class="r">#</th>
-        <th>变化</th>
-        <th>代码</th>
-        <th>公司名称</th>
-        <th>板块</th>
-        <th class="r">总市值</th>
-        <th class="r">FCF (TTM)</th>
-        <th class="r">综合分 ↓</th>
-        <th class="r">加速度(40%)</th>
-        <th class="r">质量(25%)</th>
-        <th class="r">资本行动(25%)</th>
-        <th class="r">预期(10%)</th>
-        <th class="r">数据</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody id="tbody"></tbody>
-  </table>
-  <div id="empty">该板块暂无数据</div>
+<table>
+<thead>
+<tr>
+  <th class="r">#</th>
+  <th>变化</th>
+  <th>代码</th>
+  <th>公司名称</th>
+  <th>板块</th>
+  <th class="r">总市值</th>
+  <th class="r">FCF (TTM)</th>
+  <th class="r clickable" onclick="openExplain('overall')">综合分 &#8595;</th>
+  <th class="r clickable" onclick="openExplain('accel')">加速度(40%)</th>
+  <th class="r clickable" onclick="openExplain('quality')">质量(25%)</th>
+  <th class="r clickable" onclick="openExplain('capital')">资本行动(25%)</th>
+  <th class="r clickable" onclick="openExplain('expect')">预期(10%)</th>
+  <th class="r">数据</th>
+  <th></th>
+</tr>
+</thead>
+<tbody id="tbody"></tbody>
+</table>
+<div id="empty">该板块暂无数据</div>
 </div>
-
 <footer>Alpha Scout v2.0 · 数据来源 Finnhub + Polygon · 仅供参考，不构成投资建议</footer>
-
+<!-- 自选股管理 Modal -->
 <div class="modal-overlay" id="modal-overlay" onclick="closeModalOutside(event)">
   <div class="modal">
-    <button class="modal-close" onclick="closeModal()">×</button>
+    <button class="modal-close" onclick="closeModal()">&#215;</button>
     <div class="modal-title">管理自选股</div>
     <div class="wl-list" id="modal-list"></div>
     <div class="modal-add">
@@ -272,277 +282,317 @@ footer{border-top:1px solid var(--rule);padding:12px 32px;font-size:10px;color:v
       <button class="modal-btn modal-btn-add" onclick="addTicker()">添加</button>
     </div>
     <div class="modal-msg" id="modal-msg"></div>
-    <div class="modal-note">评分数据来自上次 scan_watchlist.py 的结果，RS 来自 Polygon。</div>
+    <div class="modal-note">评分数据来自上次 scan_watchlist.py 的结果。</div>
   </div>
 </div>
-
+<!-- 字段解释 Modal -->
+<div class="exp-overlay" id="exp-overlay" onclick="closeExplainOutside(event)">
+  <div class="exp-modal">
+    <button class="exp-close" onclick="closeExplain()">&#215;</button>
+    <div id="exp-lock">
+      <div class="exp-lock">
+        <div style="font-family:var(--font-serif);font-size:22px;font-weight:700;margin-bottom:8px">字段说明</div>
+        <p>请输入密码查看评分逻辑与计算方法</p>
+        <input type="password" id="exp-pwd" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;"
+               onkeydown="if(event.key==='Enter')checkPwd()">
+        <button onclick="checkPwd()">确认</button>
+        <div class="exp-err" id="exp-err"></div>
+      </div>
+    </div>
+    <div id="exp-content" style="display:none"></div>
+  </div>
+</div>
 <script>
-const STOCKS     = [{"rank": 1, "rank_change": "↑19", "ticker": "HUT", "name": "HUT 8 CORP", "sector": "Technology", "market_cap": 11923716340.955729, "scores": {"overall": 84.7, "accel": 72.5, "quality": 91.6, "capital": 100.0, "expect": 77.5}, "rs": {"rs_3m": 86.43, "rs_6m": 157.6}, "indicators": {"rev_accel_pp": 37.349999999999994, "eps_accel_pp": null, "gross_margin_expansion_pp": 41.15, "fcf_growth_accel_pp": 76.13752624456, "fcf_growth_yoy_pct": -100, "fcf_cagr_3y_pct": null, "fcf_conversion_pct": 176.5321644810813, "gross_margin_pct": 47.61, "op_margin_pct": 115.21, "earnings_surprise_pct": 25.0803, "surprise_streak": 1, "estimate_revision_ratio_pct": 100.0, "fcf_ttm_m": null}, "data_quality": "medium", "risk_flags": [], "cn_sector": "科技"}, {"rank": 2, "rank_change": "↑17", "ticker": "STRL", "name": "STERLING INFRASTRUCTURE INC", "sector": "Construction", "market_cap": 22490963093.21572, "scores": {"overall": 83.8, "accel": 78.2, "quality": 70.1, "capital": 100.0, "expect": 100.0}, "rs": {"rs_3m": 59.06, "rs_6m": 101.9}, "indicators": {"rev_accel_pp": 54.63, "eps_accel_pp": 111.29000000000002, "gross_margin_expansion_pp": 5.259999999999998, "fcf_growth_accel_pp": -5.307461418885848, "fcf_growth_yoy_pct": -12.157613990217722, "fcf_cagr_3y_pct": 69.02865403175483, "fcf_conversion_pct": 116.89238757223012, "gross_margin_pct": 23.29, "op_margin_pct": 16.9, "earnings_surprise_pct": 50.6068, "surprise_streak": 4, "estimate_revision_ratio_pct": 100.0, "fcf_ttm_m": null}, "data_quality": "high", "risk_flags": [], "cn_sector": "工业"}, {"rank": 3, "rank_change": "↑12", "ticker": "FFIV", "name": "F5 INC", "sector": "Communications", "market_cap": 22208308774.2828, "scores": {"overall": 83.6, "accel": 63.3, "quality": 96.0, "capital": 100.0, "expect": 92.7}, "rs": {"rs_3m": 36.48, "rs_6m": 54.56}, "indicators": {"rev_accel_pp": 1.33, "eps_accel_pp": -11.559999999999999, "gross_margin_expansion_pp": 1.1800000000000068, "fcf_growth_accel_pp": 13.319714065249755, "fcf_growth_yoy_pct": 41.96191106438764, "fcf_cagr_3y_pct": 27.289660305489114, "fcf_conversion_pct": 153.31028524646024, "gross_margin_pct": 81.54, "op_margin_pct": 24.66, "earnings_surprise_pct": 10.632, "surprise_streak": 4, "estimate_revision_ratio_pct": 90.0, "fcf_ttm_m": null}, "data_quality": "high", "risk_flags": [], "cn_sector": "通信"}, {"rank": 4, "rank_change": "↑33", "ticker": "SANM", "name": "SANMINA CORP", "sector": "Electrical Equipment", "market_cap": 13208625242.831882, "scores": {"overall": 82.6, "accel": 91.2, "quality": 45.4, "capital": 99.1, "expect": 100.0}, "rs": {"rs_3m": 57.09, "rs_6m": 48.19}, "indicators": {"rev_accel_pp": 57.79, "eps_accel_pp": 37.65, "gross_margin_expansion_pp": 0.28999999999999915, "fcf_growth_accel_pp": 83.08567015211341, "fcf_growth_yoy_pct": 191.14382831513103, "fcf_cagr_3y_pct": 73.76468729003957, "fcf_conversion_pct": 262.4671811311449, "gross_margin_pct": 8.54, "op_margin_pct": 3.57, "earnings_surprise_pct": 29.1905, "surprise_streak": 4, "estimate_revision_ratio_pct": 100.0, "fcf_ttm_m": null}, "data_quality": "high", "risk_flags": [], "cn_sector": "科技"}, {"rank": 5, "rank_change": "↑28", "ticker": "VICR", "name": "VICOR CORP", "sector": "Electrical Equipment", "market_cap": 11095880000.0, "scores": {"overall": 82.0, "accel": 63.5, "quality": 89.2, "capital": 100.0, "expect": 92.5}, "rs": {"rs_3m": 46.42, "rs_6m": 193.58}, "indicators": {"rev_accel_pp": 4.629999999999999, "eps_accel_pp": 194.29000000000008, "gross_margin_expansion_pp": 5.140000000000001, "fcf_growth_accel_pp": -15811.989672283193, "fcf_growth_yoy_pct": 551.5762191896753, "fcf_cagr_3y_pct": 106.62108905243674, "fcf_conversion_pct": 147.3969488483398, "gross_margin_pct": 54.99, "op_margin_pct": 23.17, "earnings_surprise_pct": 19.8257, "surprise_streak": 3, "estimate_revision_ratio_pct": 100.0, "fcf_ttm_m": null}, "data_quality": "high", "risk_flags": [], "cn_sector": "科技"}, {"rank": 6, "rank_change": "↑32", "ticker": "LSCC", "name": "LATTICE SEMICONDUCTOR CORP", "sector": "Semiconductors", "market_cap": 19622266321.75199, "scores": {"overall": 81.3, "accel": 75.8, "quality": 77.3, "capital": 100.0, "expect": 66.6}, "rs": {"rs_3m": 37.08, "rs_6m": 97.04}, "indicators": {"rev_accel_pp": 24.790000000000003, "eps_accel_pp": 392.9, "gross_margin_expansion_pp": 1.289999999999992, "fcf_growth_accel_pp": 9.485706357538001, "fcf_growth_yoy_pct": -18.759535823040448, "fcf_cagr_3y_pct": 30.364219012403627, "fcf_conversion_pct": 394.2880845572421, "gross_margin_pct": 68.44, "op_margin_pct": 5.28, "earnings_surprise_pct": 8.4656, "surprise_streak": 1, "estimate_revision_ratio_pct": 95.0, "fcf_ttm_m": null}, "data_quality": "high", "risk_flags": [], "cn_sector": "科技"}, {"rank": 7, "rank_change": "↑3", "ticker": "CGNX", "name": "COGNEX CORP", "sector": "Electrical Equipment", "market_cap": 10998660800.088846, "scores": {"overall": 81.3, "accel": 70.7, "quality": 90.7, "capital": 81.5, "expect": 100.0}, "rs": {"rs_3m": 7.8, "rs_6m": 66.41}, "indicators": {"rev_accel_pp": 10.450000000000001, "eps_accel_pp": 98.19, "gross_margin_expansion_pp": -2.410000000000011, "fcf_growth_accel_pp": 25.516837948129954, "fcf_growth_yoy_pct": 72.51386861313868, "fcf_cagr_3y_pct": -2.1923033122488778, "fcf_conversion_pct": 154.92800527411936, "gross_margin_pct": 68.02, "op_margin_pct": 18.61, "earnings_surprise_pct": 34.0694, "surprise_streak": 4, "estimate_revision_ratio_pct": 100.0, "fcf_ttm_m": null}, "data_quality": "high", "risk_flags": [], "cn_sector": "科技"}, {"rank": 8, "rank_change": "↑23", "ticker": "VRSN", "name": "VERISIGN INC", "sector": "Technology", "market_cap": 27539330000.0, "scores": {"overall": 76.4, "accel": 64.4, "quality": 100.0, "capital": 81.4, "expect": 53.2}, "rs": {"rs_3m": 37.4, "rs_6m": 12.87}, "indicators": {"rev_accel_pp": -0.22999999999999954, "eps_accel_pp": 0.7300000000000004, "gross_margin_expansion_pp": 1.5300000000000011, "fcf_growth_accel_pp": 19.080318638299232, "fcf_growth_yoy_pct": 20.616658996778646, "fcf_cagr_3y_pct": 17.543250609038118, "fcf_conversion_pct": 125.70743405275779, "gross_margin_pct": 88.35, "op_margin_pct": 67.93, "earnings_surprise_pct": 2.0987, "surprise_streak": 1, "estimate_revision_ratio_pct": 87.5, "fcf_ttm_m": null}, "data_quality": "high", "risk_flags": [], "cn_sector": "科技"}, {"rank": 9, "rank_change": "↑5", "ticker": "NXT", "name": "NEXTPOWER INC-CL A", "sector": "Electrical Equipment", "market_cap": 19610818456.42043, "scores": {"overall": 76.4, "accel": 77.2, "quality": 72.8, "capital": 70.7, "expect": 96.9}, "rs": {"rs_3m": 1.98, "rs_6m": 38.11}, "indicators": {"rev_accel_pp": 3.830000000000002, "eps_accel_pp": 6.040000000000001, "gross_margin_expansion_pp": 12.3, "fcf_growth_accel_pp": 41.109690100391816, "fcf_growth_yoy_pct": 61.11377132960703, "fcf_cagr_3y_pct": null, "fcf_conversion_pct": 89.89325472289275, "gross_margin_pct": 34.54, "op_margin_pct": 20.51, "earnings_surprise_pct": 13.1587, "surprise_streak": 4, "estimate_revision_ratio_pct": 100.0, "fcf_ttm_m": null}, "data_quality": "high", "risk_flags": [], "cn_sector": "科技"}, {"rank": 10, "rank_change": "NEW", "ticker": "PL", "name": "PLANET LABS PBC", "sector": "Professional Services", "market_cap": 15351708356.716105, "scores": {"overall": 76.2, "accel": 87.5, "quality": 24.8, "capital": 100.0, "expect": 100.0}, "rs": {"rs_3m": 76.93, "rs_6m": 272.18}, "indicators": {"rev_accel_pp": 15.109999999999996, "eps_accel_pp": null, "gross_margin_expansion_pp": 5.809999999999995, "fcf_growth_accel_pp": 40.5510464906321, "fcf_growth_yoy_pct": 500, "fcf_cagr_3y_pct": null, "fcf_conversion_pct": -48.07749419142952, "gross_margin_pct": 56.05, "op_margin_pct": -30.9, "earnings_surprise_pct": 100.0, "surprise_streak": 4, "estimate_revision_ratio_pct": 100.0, "fcf_ttm_m": null}, "data_quality": "medium", "risk_flags": [], "cn_sector": "科技"}, {"rank": 11, "rank_change": "NEW", "ticker": "DOCN", "name": "DIGITALOCEAN HOLDINGS INC", "sector": "Technology", "market_cap": 16537548840.409225, "scores": {"overall": 75.1, "accel": 59.4, "quality": 65.4, "capital": 100.0, "expect": 100.0}, "rs": {"rs_3m": 157.92, "rs_6m": 238.83}, "indicators": {"rev_accel_pp": 4.789999999999999, "eps_accel_pp": -166.41, "gross_margin_expansion_pp": -1.9099999999999966, "fcf_growth_accel_pp": 18.402061148729633, "fcf_growth_yoy_pct": 39.17433071286759, "fcf_cagr_3y_pct": 55.96617503941872, "fcf_conversion_pct": 62.68601652945588, "gross_margin_pct": 58.49, "op_margin_pct": 21.22, "earnings_surprise_pct": 62.6016, "surprise_streak": 4, "estimate_revision_ratio_pct": 100.0, "fcf_ttm_m": null}, "data_quality": "high", "risk_flags": [], "cn_sector": "科技"}, {"rank": 12, "rank_change": "↑4", "ticker": "NBIX", "name": "NEUROCRINE BIOSCIENCES INC", "sector": "Biotechnology", "market_cap": 15756183087.353052, "scores": {"overall": 74.3, "accel": 71.1, "quality": 93.0, "capital": 59.4, "expect": 77.5}, "rs": {"rs_3m": 12.49, "rs_6m": -1.2}, "indicators": {"rev_accel_pp": 13.66, "eps_accel_pp": 2262.03, "gross_margin_expansion_pp": -0.18999999999999773, "fcf_growth_accel_pp": 1.5140366545539865, "fcf_growth_yoy_pct": -6.041033434650456, "fcf_cagr_3y_pct": 80.30236877949257, "fcf_conversion_pct": 94.60596786534047, "gross_margin_pct": 98.17, "op_margin_pct": 25.43, "earnings_surprise_pct": 62.2632, "surprise_streak": 1, "estimate_revision_ratio_pct": 100.0, "fcf_ttm_m": null}, "data_quality": "high", "risk_flags": [], "cn_sector": "科技"}, {"rank": 13, "rank_change": "NEW", "ticker": "ROKU", "name": "ROKU INC", "sector": "Media", "market_cap": 18529119965.20107, "scores": {"overall": 74.2, "accel": 67.1, "quality": 63.5, "capital": 86.0, "expect": 100.0}, "rs": {"rs_3m": 39.15, "rs_6m": 22.03}, "indicators": {"rev_accel_pp": 5.579999999999998, "eps_accel_pp": null, "gross_margin_expansion_pp": -1.9000000000000057, "fcf_growth_accel_pp": 50.67807216242339, "fcf_growth_yoy_pct": 51.333093496422435, "fcf_cagr_3y_pct": 22.02812385475841, "fcf_conversion_pct": 606.8184732432894, "gross_margin_pct": 44.19, "op_margin_pct": 2.09, "earnings_surprise_pct": 71.274, "surprise_streak": 4, "estimate_revision_ratio_pct": 100.0, "fcf_ttm_m": null}, "data_quality": "high", "risk_flags": [], "cn_sector": "通信"}, {"rank": 14, "rank_change": "NEW", "ticker": "RMBS", "name": "RAMBUS INC", "sector": "Semiconductors", "market_cap": 15461424843.280073, "scores": {"overall": 74.0, "accel": 55.1, "quality": 100.0, "capital": 96.0, "expect": 30.0}, "rs": {"rs_3m": 40.51, "rs_6m": 42.02}, "indicators": {"rev_accel_pp": -11.000000000000002, "eps_accel_pp": -11.82, "gross_margin_expansion_pp": 1.0, "fcf_growth_accel_pp": 3.009973007898614, "fcf_growth_yoy_pct": 63.03944971417803, "fcf_cagr_3y_pct": 111.50837015439747, "fcf_conversion_pct": 137.52235365805194, "gross_margin_pct": 79.46, "op_margin_pct": 35.89, "earnings_surprise_pct": -5.1128, "surprise_streak": 0, "estimate_revision_ratio_pct": 92.85714285714286, "fcf_ttm_m": null}, "data_quality": "high", "risk_flags": [], "cn_sector": "科技"}, {"rank": 15, "rank_change": "↑21", "ticker": "FTI", "name": "TECHNIPFMC PLC", "sector": "Energy", "market_cap": 28303849637.607334, "scores": {"overall": 73.9, "accel": 72.4, "quality": 67.3, "capital": 74.6, "expect": 94.6}, "rs": {"rs_3m": 1.09, "rs_6m": 47.41}, "indicators": {"rev_accel_pp": 1.7199999999999989, "eps_accel_pp": 55.12, "gross_margin_expansion_pp": 5.899999999999999, "fcf_growth_accel_pp": -43.16028073910054, "fcf_growth_yoy_pct": 364.00565171317555, "fcf_cagr_3y_pct": 127.88376548327696, "fcf_conversion_pct": 131.91403896364733, "gross_margin_pct": 22.59, "op_margin_pct": 13.84, "earnings_surprise_pct": 11.7709, "surprise_streak": 4, "estimate_revision_ratio_pct": 100.0, "fcf_ttm_m": null}, "data_quality": "high", "risk_flags": [], "cn_sector": "能源"}];
-const WL_STOCKS  = [{"ticker": "SOXL", "name": "", "sector": "", "market_cap": null, "scores": {"overall": 61.0, "accel": 50.0, "quality": 50.0, "capital": 100.0, "expect": 35.0}, "rs": {"rs_3m": 179.77, "rs_6m": 419.26}, "indicators": {"rev_accel_pp": null, "eps_accel_pp": null, "gross_margin_expansion_pp": null, "fcf_growth_accel_pp": null, "fcf_growth_yoy_pct": null, "fcf_cagr_3y_pct": null, "fcf_conversion_pct": null, "gross_margin_pct": null, "op_margin_pct": null, "earnings_surprise_pct": null, "surprise_streak": 0, "estimate_revision_ratio_pct": null, "fcf_ttm_m": null}, "data_quality": "low", "risk_flags": [], "in_scan": true, "cn_sector": "其他"}, {"ticker": "SMH", "name": "", "sector": "", "market_cap": null, "scores": {"overall": 61.0, "accel": 50.0, "quality": 50.0, "capital": 100.0, "expect": 35.0}, "rs": {"rs_3m": 30.02, "rs_6m": 58.34}, "indicators": {"rev_accel_pp": null, "eps_accel_pp": null, "gross_margin_expansion_pp": null, "fcf_growth_accel_pp": null, "fcf_growth_yoy_pct": null, "fcf_cagr_3y_pct": null, "fcf_conversion_pct": null, "gross_margin_pct": null, "op_margin_pct": null, "earnings_surprise_pct": null, "surprise_streak": 0, "estimate_revision_ratio_pct": null, "fcf_ttm_m": null}, "data_quality": "low", "risk_flags": [], "in_scan": true, "cn_sector": "其他"}, {"ticker": "NVDA", "name": "", "sector": "", "market_cap": null, "scores": {"overall": 79.9, "accel": 89.7, "quality": 87.7, "capital": 55.3, "expect": 82.2}, "rs": {"rs_3m": 2.85, "rs_6m": 5.83}, "indicators": {"rev_accel_pp": 14.549999999999997, "eps_accel_pp": 103.07999999999998, "gross_margin_expansion_pp": 6.02000000000001, "fcf_growth_accel_pp": -6.59637694594033, "fcf_growth_yoy_pct": 136.83205287780592, "fcf_cagr_3y_pct": 214.84623194377642, "fcf_conversion_pct": 81.48905691585196, "gross_margin_pct": 74.15, "op_margin_pct": 64.02, "earnings_surprise_pct": 4.3119, "surprise_streak": 4, "estimate_revision_ratio_pct": 98.50746268656717, "fcf_ttm_m": null}, "data_quality": "high", "risk_flags": [], "in_scan": true, "cn_sector": "其他"}, {"ticker": "AMD", "name": "", "sector": "", "market_cap": null, "scores": {"overall": 81.5, "accel": 73.0, "quality": 78.8, "capital": 100.0, "expect": 75.5}, "rs": {"rs_3m": 128.23, "rs_6m": 105.26}, "indicators": {"rev_accel_pp": 2.8800000000000026, "eps_accel_pp": -31.150000000000006, "gross_margin_expansion_pp": 2.6499999999999986, "fcf_growth_accel_pp": 181.75148054366903, "fcf_growth_yoy_pct": 329.73308504034765, "fcf_cagr_3y_pct": 47.96645526227932, "fcf_conversion_pct": 164.55906821963396, "gross_margin_pct": 50.28, "op_margin_pct": 11.65, "earnings_surprise_pct": 4.7881, "surprise_streak": 3, "estimate_revision_ratio_pct": 97.82608695652173, "fcf_ttm_m": null}, "data_quality": "high", "risk_flags": [], "in_scan": true, "cn_sector": "其他"}, {"ticker": "VRT", "name": "", "sector": "", "market_cap": null, "scores": {"overall": 81.8, "accel": 71.1, "quality": 78.4, "capital": 94.9, "expect": 100.0}, "rs": {"rs_3m": 23.89, "rs_6m": 81.85}, "indicators": {"rev_accel_pp": 1.1799999999999997, "eps_accel_pp": 4.909999999999997, "gross_margin_expansion_pp": 3.789999999999999, "fcf_growth_accel_pp": 13.924416548797735, "fcf_growth_yoy_pct": 64.5940594059406, "fcf_cagr_3y_pct": null, "fcf_conversion_pct": 130.14953417364754, "gross_margin_pct": 37.15, "op_margin_pct": 17.66, "earnings_surprise_pct": 16.0024, "surprise_streak": 4, "estimate_revision_ratio_pct": 96.55172413793103, "fcf_ttm_m": null}, "data_quality": "high", "risk_flags": [], "in_scan": true, "cn_sector": "其他"}, {"ticker": "LEU", "name": "", "sector": "", "market_cap": null, "scores": {"overall": 27.6, "accel": 31.4, "quality": 29.0, "capital": 0.0, "expect": 77.5}, "rs": {"rs_3m": -20.33, "rs_6m": -40.35}, "indicators": {"rev_accel_pp": 8.969999999999999, "eps_accel_pp": -19.28, "gross_margin_expansion_pp": -7.32, "fcf_growth_accel_pp": -287.34496919917865, "fcf_growth_yoy_pct": 500, "fcf_cagr_3y_pct": null, "fcf_conversion_pct": 44.285714285714285, "gross_margin_pct": 25.67, "op_margin_pct": 6.74, "earnings_surprise_pct": 88.4422, "surprise_streak": 1, "estimate_revision_ratio_pct": 100.0, "fcf_ttm_m": null}, "data_quality": "high", "risk_flags": [], "in_scan": true, "cn_sector": "其他"}, {"ticker": "MSFT", "name": "", "sector": "", "market_cap": null, "scores": {"overall": 53.1, "accel": 49.3, "quality": 71.7, "capital": 29.9, "expect": 80.1}, "rs": {"rs_3m": -0.46, "rs_6m": -23.44}, "indicators": {"rev_accel_pp": 0.4299999999999997, "eps_accel_pp": -6.43, "gross_margin_expansion_pp": -0.6599999999999966, "fcf_growth_accel_pp": 12.19976339964483, "fcf_growth_yoy_pct": 5.296992715273022, "fcf_cagr_3y_pct": 4.907937241842775, "fcf_conversion_pct": 54.63907533499721, "gross_margin_pct": 68.31, "op_margin_pct": 46.75, "earnings_surprise_pct": 3.0604, "surprise_streak": 4, "estimate_revision_ratio_pct": 100.0, "fcf_ttm_m": null}, "data_quality": "high", "risk_flags": [], "in_scan": true, "cn_sector": "其他"}, {"ticker": "GOOGL", "name": "", "sector": "", "market_cap": null, "scores": {"overall": 63.7, "accel": 68.4, "quality": 68.1, "capital": 65.3, "expect": 30.0}, "rs": {"rs_3m": 13.47, "rs_6m": 8.24}, "indicators": {"rev_accel_pp": 4.34, "eps_accel_pp": 33.449999999999996, "gross_margin_expansion_pp": 2.9499999999999957, "fcf_growth_accel_pp": 18.29989726666901, "fcf_growth_yoy_pct": -11.13849120786404, "fcf_cagr_3y_pct": 3.3779027924679905, "fcf_conversion_pct": 53.50277383563411, "gross_margin_pct": 60.37, "op_margin_pct": 32.69, "earnings_surprise_pct": -3.1459, "surprise_streak": 0, "estimate_revision_ratio_pct": 100.0, "fcf_ttm_m": null}, "data_quality": "high", "risk_flags": [], "in_scan": true, "cn_sector": "其他"}, {"ticker": "RKLB", "name": "", "sector": "", "market_cap": null, "scores": {"overall": 72.8, "accel": 60.9, "quality": 57.5, "capital": 100.0, "expect": 91.0}, "rs": {"rs_3m": 83.8, "rs_6m": 207.68}, "indicators": {"rev_accel_pp": 17.630000000000003, "eps_accel_pp": null, "gross_margin_expansion_pp": 18.950000000000003, "fcf_growth_accel_pp": -10.843221149660875, "fcf_growth_yoy_pct": -100, "fcf_cagr_3y_pct": null, "fcf_conversion_pct": 149.7659070248911, "gross_margin_pct": 36.56, "op_margin_pct": -34.07, "earnings_surprise_pct": 14.1104, "surprise_streak": 3, "estimate_revision_ratio_pct": 100.0, "fcf_ttm_m": null}, "data_quality": "medium", "risk_flags": [], "in_scan": true, "cn_sector": "其他"}, {"ticker": "LLY", "name": "", "sector": "", "market_cap": null, "scores": {"overall": 57.5, "accel": 61.2, "quality": 63.2, "capital": 28.8, "expect": 100.0}, "rs": {"rs_3m": -8.79, "rs_6m": -12.28}, "indicators": {"rev_accel_pp": 8.11, "eps_accel_pp": 40.619999999999976, "gross_margin_expansion_pp": 3.9200000000000017, "fcf_growth_accel_pp": -19.035729546172448, "fcf_growth_yoy_pct": -15.655477893368012, "fcf_cagr_3y_pct": null, "fcf_conversion_pct": 36.3704366643068, "gross_margin_pct": 82.83, "op_margin_pct": 43.63, "earnings_surprise_pct": 27.0431, "surprise_streak": 4, "estimate_revision_ratio_pct": 96.7741935483871, "fcf_ttm_m": null}, "data_quality": "high", "risk_flags": [], "in_scan": true, "cn_sector": "其他"}, {"ticker": "XLV", "name": "", "sector": "", "market_cap": null, "scores": {"overall": 40.9, "accel": 50.0, "quality": 50.0, "capital": 19.4, "expect": 35.0}, "rs": {"rs_3m": -14.63, "rs_6m": -14.78}, "indicators": {"rev_accel_pp": null, "eps_accel_pp": null, "gross_margin_expansion_pp": null, "fcf_growth_accel_pp": null, "fcf_growth_yoy_pct": null, "fcf_cagr_3y_pct": null, "fcf_conversion_pct": null, "gross_margin_pct": null, "op_margin_pct": null, "earnings_surprise_pct": null, "surprise_streak": 0, "estimate_revision_ratio_pct": null, "fcf_ttm_m": null}, "data_quality": "low", "risk_flags": [], "in_scan": true, "cn_sector": "其他"}];
-const SECTORS    = ["科技", "工业", "能源", "通信"];
-const DROPPED    = ["FICO", "UAL", "PTC", "DECK", "CDE", "EXPE", "EFX", "RBC", "ODFL", "CBOE", "GWRE", "EQT", "GEN", "PODD", "DXCM", "HSY", "WDAY", "NTRS", "RL", "VRSK", "HL", "PAYX", "ZBRA", "GRMN", "NYT", "INCY", "RMD", "TPR", "FIS", "IDXX", "OKTA", "AU", "IAG", "TRMB", "VLTO", "ZBH", "THC", "STE", "GDDY"];
-const IND_META   = [["rev_accel_pp", "营收加速度", "pp"], ["eps_accel_pp", "EPS 加速度", "pp"], ["gross_margin_expansion_pp", "毛利率扩张", "pp"], ["fcf_growth_accel_pp", "FCF 加速度", "pp"], ["fcf_growth_yoy_pct", "FCF 增速 YoY", "%"], ["fcf_cagr_3y_pct", "FCF CAGR 3Y", "%"], ["fcf_conversion_pct", "FCF 转化率", "%"], ["gross_margin_pct", "毛利率", "%"], ["op_margin_pct", "营业利润率", "%"], ["earnings_surprise_pct", "业绩超预期", "%"], ["surprise_streak", "超预期连续", "Q"], ["estimate_revision_ratio_pct", "分析师看多比", "%"]];
-const UPDATED_AT = "2026-05-26 01:35 UTC";
-const UNIV_SIZE  = 386;
-const VERSION    = "v2.0";
+const STOCKS=[{"rank": 1, "rank_change": "↑19", "ticker": "HUT", "name": "HUT 8 CORP", "sector": "Technology", "market_cap": 11923716340.955729, "scores": {"overall": 84.7, "accel": 72.5, "quality": 91.6, "capital": 100.0, "expect": 77.5}, "rs": {"rs_3m": 86.43, "rs_6m": 157.6}, "indicators": {"rev_accel_pp": 37.349999999999994, "eps_accel_pp": null, "gross_margin_expansion_pp": 41.15, "fcf_growth_accel_pp": 76.13752624456, "fcf_growth_yoy_pct": -100, "fcf_cagr_3y_pct": null, "fcf_conversion_pct": 176.5321644810813, "gross_margin_pct": 47.61, "op_margin_pct": 115.21, "earnings_surprise_pct": 25.0803, "surprise_streak": 1, "estimate_revision_ratio_pct": 100.0, "fcf_ttm_m": null}, "data_quality": "medium", "risk_flags": [], "cn_sector": "科技"}, {"rank": 2, "rank_change": "↑17", "ticker": "STRL", "name": "STERLING INFRASTRUCTURE INC", "sector": "Construction", "market_cap": 22490963093.21572, "scores": {"overall": 83.8, "accel": 78.2, "quality": 70.1, "capital": 100.0, "expect": 100.0}, "rs": {"rs_3m": 59.06, "rs_6m": 101.9}, "indicators": {"rev_accel_pp": 54.63, "eps_accel_pp": 111.29000000000002, "gross_margin_expansion_pp": 5.259999999999998, "fcf_growth_accel_pp": -5.307461418885848, "fcf_growth_yoy_pct": -12.157613990217722, "fcf_cagr_3y_pct": 69.02865403175483, "fcf_conversion_pct": 116.89238757223012, "gross_margin_pct": 23.29, "op_margin_pct": 16.9, "earnings_surprise_pct": 50.6068, "surprise_streak": 4, "estimate_revision_ratio_pct": 100.0, "fcf_ttm_m": null}, "data_quality": "high", "risk_flags": [], "cn_sector": "工业"}, {"rank": 3, "rank_change": "↑12", "ticker": "FFIV", "name": "F5 INC", "sector": "Communications", "market_cap": 22208308774.2828, "scores": {"overall": 83.6, "accel": 63.3, "quality": 96.0, "capital": 100.0, "expect": 92.7}, "rs": {"rs_3m": 36.48, "rs_6m": 54.56}, "indicators": {"rev_accel_pp": 1.33, "eps_accel_pp": -11.559999999999999, "gross_margin_expansion_pp": 1.1800000000000068, "fcf_growth_accel_pp": 13.319714065249755, "fcf_growth_yoy_pct": 41.96191106438764, "fcf_cagr_3y_pct": 27.289660305489114, "fcf_conversion_pct": 153.31028524646024, "gross_margin_pct": 81.54, "op_margin_pct": 24.66, "earnings_surprise_pct": 10.632, "surprise_streak": 4, "estimate_revision_ratio_pct": 90.0, "fcf_ttm_m": null}, "data_quality": "high", "risk_flags": [], "cn_sector": "通信"}, {"rank": 4, "rank_change": "↑33", "ticker": "SANM", "name": "SANMINA CORP", "sector": "Electrical Equipment", "market_cap": 13208625242.831882, "scores": {"overall": 82.6, "accel": 91.2, "quality": 45.4, "capital": 99.1, "expect": 100.0}, "rs": {"rs_3m": 57.09, "rs_6m": 48.19}, "indicators": {"rev_accel_pp": 57.79, "eps_accel_pp": 37.65, "gross_margin_expansion_pp": 0.28999999999999915, "fcf_growth_accel_pp": 83.08567015211341, "fcf_growth_yoy_pct": 191.14382831513103, "fcf_cagr_3y_pct": 73.76468729003957, "fcf_conversion_pct": 262.4671811311449, "gross_margin_pct": 8.54, "op_margin_pct": 3.57, "earnings_surprise_pct": 29.1905, "surprise_streak": 4, "estimate_revision_ratio_pct": 100.0, "fcf_ttm_m": null}, "data_quality": "high", "risk_flags": [], "cn_sector": "科技"}, {"rank": 5, "rank_change": "↑28", "ticker": "VICR", "name": "VICOR CORP", "sector": "Electrical Equipment", "market_cap": 11095880000.0, "scores": {"overall": 82.0, "accel": 63.5, "quality": 89.2, "capital": 100.0, "expect": 92.5}, "rs": {"rs_3m": 46.42, "rs_6m": 193.58}, "indicators": {"rev_accel_pp": 4.629999999999999, "eps_accel_pp": 194.29000000000008, "gross_margin_expansion_pp": 5.140000000000001, "fcf_growth_accel_pp": -15811.989672283193, "fcf_growth_yoy_pct": 551.5762191896753, "fcf_cagr_3y_pct": 106.62108905243674, "fcf_conversion_pct": 147.3969488483398, "gross_margin_pct": 54.99, "op_margin_pct": 23.17, "earnings_surprise_pct": 19.8257, "surprise_streak": 3, "estimate_revision_ratio_pct": 100.0, "fcf_ttm_m": null}, "data_quality": "high", "risk_flags": [], "cn_sector": "科技"}, {"rank": 6, "rank_change": "↑32", "ticker": "LSCC", "name": "LATTICE SEMICONDUCTOR CORP", "sector": "Semiconductors", "market_cap": 19622266321.75199, "scores": {"overall": 81.3, "accel": 75.8, "quality": 77.3, "capital": 100.0, "expect": 66.6}, "rs": {"rs_3m": 37.08, "rs_6m": 97.04}, "indicators": {"rev_accel_pp": 24.790000000000003, "eps_accel_pp": 392.9, "gross_margin_expansion_pp": 1.289999999999992, "fcf_growth_accel_pp": 9.485706357538001, "fcf_growth_yoy_pct": -18.759535823040448, "fcf_cagr_3y_pct": 30.364219012403627, "fcf_conversion_pct": 394.2880845572421, "gross_margin_pct": 68.44, "op_margin_pct": 5.28, "earnings_surprise_pct": 8.4656, "surprise_streak": 1, "estimate_revision_ratio_pct": 95.0, "fcf_ttm_m": null}, "data_quality": "high", "risk_flags": [], "cn_sector": "科技"}, {"rank": 7, "rank_change": "↑3", "ticker": "CGNX", "name": "COGNEX CORP", "sector": "Electrical Equipment", "market_cap": 10998660800.088846, "scores": {"overall": 81.3, "accel": 70.7, "quality": 90.7, "capital": 81.5, "expect": 100.0}, "rs": {"rs_3m": 7.8, "rs_6m": 66.41}, "indicators": {"rev_accel_pp": 10.450000000000001, "eps_accel_pp": 98.19, "gross_margin_expansion_pp": -2.410000000000011, "fcf_growth_accel_pp": 25.516837948129954, "fcf_growth_yoy_pct": 72.51386861313868, "fcf_cagr_3y_pct": -2.1923033122488778, "fcf_conversion_pct": 154.92800527411936, "gross_margin_pct": 68.02, "op_margin_pct": 18.61, "earnings_surprise_pct": 34.0694, "surprise_streak": 4, "estimate_revision_ratio_pct": 100.0, "fcf_ttm_m": null}, "data_quality": "high", "risk_flags": [], "cn_sector": "科技"}, {"rank": 8, "rank_change": "↑23", "ticker": "VRSN", "name": "VERISIGN INC", "sector": "Technology", "market_cap": 27539330000.0, "scores": {"overall": 76.4, "accel": 64.4, "quality": 100.0, "capital": 81.4, "expect": 53.2}, "rs": {"rs_3m": 37.4, "rs_6m": 12.87}, "indicators": {"rev_accel_pp": -0.22999999999999954, "eps_accel_pp": 0.7300000000000004, "gross_margin_expansion_pp": 1.5300000000000011, "fcf_growth_accel_pp": 19.080318638299232, "fcf_growth_yoy_pct": 20.616658996778646, "fcf_cagr_3y_pct": 17.543250609038118, "fcf_conversion_pct": 125.70743405275779, "gross_margin_pct": 88.35, "op_margin_pct": 67.93, "earnings_surprise_pct": 2.0987, "surprise_streak": 1, "estimate_revision_ratio_pct": 87.5, "fcf_ttm_m": null}, "data_quality": "high", "risk_flags": [], "cn_sector": "科技"}, {"rank": 9, "rank_change": "↑5", "ticker": "NXT", "name": "NEXTPOWER INC-CL A", "sector": "Electrical Equipment", "market_cap": 19610818456.42043, "scores": {"overall": 76.4, "accel": 77.2, "quality": 72.8, "capital": 70.7, "expect": 96.9}, "rs": {"rs_3m": 1.98, "rs_6m": 38.11}, "indicators": {"rev_accel_pp": 3.830000000000002, "eps_accel_pp": 6.040000000000001, "gross_margin_expansion_pp": 12.3, "fcf_growth_accel_pp": 41.109690100391816, "fcf_growth_yoy_pct": 61.11377132960703, "fcf_cagr_3y_pct": null, "fcf_conversion_pct": 89.89325472289275, "gross_margin_pct": 34.54, "op_margin_pct": 20.51, "earnings_surprise_pct": 13.1587, "surprise_streak": 4, "estimate_revision_ratio_pct": 100.0, "fcf_ttm_m": null}, "data_quality": "high", "risk_flags": [], "cn_sector": "科技"}, {"rank": 10, "rank_change": "NEW", "ticker": "PL", "name": "PLANET LABS PBC", "sector": "Professional Services", "market_cap": 15351708356.716105, "scores": {"overall": 76.2, "accel": 87.5, "quality": 24.8, "capital": 100.0, "expect": 100.0}, "rs": {"rs_3m": 76.93, "rs_6m": 272.18}, "indicators": {"rev_accel_pp": 15.109999999999996, "eps_accel_pp": null, "gross_margin_expansion_pp": 5.809999999999995, "fcf_growth_accel_pp": 40.5510464906321, "fcf_growth_yoy_pct": 500, "fcf_cagr_3y_pct": null, "fcf_conversion_pct": -48.07749419142952, "gross_margin_pct": 56.05, "op_margin_pct": -30.9, "earnings_surprise_pct": 100.0, "surprise_streak": 4, "estimate_revision_ratio_pct": 100.0, "fcf_ttm_m": null}, "data_quality": "medium", "risk_flags": [], "cn_sector": "科技"}, {"rank": 11, "rank_change": "NEW", "ticker": "DOCN", "name": "DIGITALOCEAN HOLDINGS INC", "sector": "Technology", "market_cap": 16537548840.409225, "scores": {"overall": 75.1, "accel": 59.4, "quality": 65.4, "capital": 100.0, "expect": 100.0}, "rs": {"rs_3m": 157.92, "rs_6m": 238.83}, "indicators": {"rev_accel_pp": 4.789999999999999, "eps_accel_pp": -166.41, "gross_margin_expansion_pp": -1.9099999999999966, "fcf_growth_accel_pp": 18.402061148729633, "fcf_growth_yoy_pct": 39.17433071286759, "fcf_cagr_3y_pct": 55.96617503941872, "fcf_conversion_pct": 62.68601652945588, "gross_margin_pct": 58.49, "op_margin_pct": 21.22, "earnings_surprise_pct": 62.6016, "surprise_streak": 4, "estimate_revision_ratio_pct": 100.0, "fcf_ttm_m": null}, "data_quality": "high", "risk_flags": [], "cn_sector": "科技"}, {"rank": 12, "rank_change": "↑4", "ticker": "NBIX", "name": "NEUROCRINE BIOSCIENCES INC", "sector": "Biotechnology", "market_cap": 15756183087.353052, "scores": {"overall": 74.3, "accel": 71.1, "quality": 93.0, "capital": 59.4, "expect": 77.5}, "rs": {"rs_3m": 12.49, "rs_6m": -1.2}, "indicators": {"rev_accel_pp": 13.66, "eps_accel_pp": 2262.03, "gross_margin_expansion_pp": -0.18999999999999773, "fcf_growth_accel_pp": 1.5140366545539865, "fcf_growth_yoy_pct": -6.041033434650456, "fcf_cagr_3y_pct": 80.30236877949257, "fcf_conversion_pct": 94.60596786534047, "gross_margin_pct": 98.17, "op_margin_pct": 25.43, "earnings_surprise_pct": 62.2632, "surprise_streak": 1, "estimate_revision_ratio_pct": 100.0, "fcf_ttm_m": null}, "data_quality": "high", "risk_flags": [], "cn_sector": "科技"}, {"rank": 13, "rank_change": "NEW", "ticker": "ROKU", "name": "ROKU INC", "sector": "Media", "market_cap": 18529119965.20107, "scores": {"overall": 74.2, "accel": 67.1, "quality": 63.5, "capital": 86.0, "expect": 100.0}, "rs": {"rs_3m": 39.15, "rs_6m": 22.03}, "indicators": {"rev_accel_pp": 5.579999999999998, "eps_accel_pp": null, "gross_margin_expansion_pp": -1.9000000000000057, "fcf_growth_accel_pp": 50.67807216242339, "fcf_growth_yoy_pct": 51.333093496422435, "fcf_cagr_3y_pct": 22.02812385475841, "fcf_conversion_pct": 606.8184732432894, "gross_margin_pct": 44.19, "op_margin_pct": 2.09, "earnings_surprise_pct": 71.274, "surprise_streak": 4, "estimate_revision_ratio_pct": 100.0, "fcf_ttm_m": null}, "data_quality": "high", "risk_flags": [], "cn_sector": "通信"}, {"rank": 14, "rank_change": "NEW", "ticker": "RMBS", "name": "RAMBUS INC", "sector": "Semiconductors", "market_cap": 15461424843.280073, "scores": {"overall": 74.0, "accel": 55.1, "quality": 100.0, "capital": 96.0, "expect": 30.0}, "rs": {"rs_3m": 40.51, "rs_6m": 42.02}, "indicators": {"rev_accel_pp": -11.000000000000002, "eps_accel_pp": -11.82, "gross_margin_expansion_pp": 1.0, "fcf_growth_accel_pp": 3.009973007898614, "fcf_growth_yoy_pct": 63.03944971417803, "fcf_cagr_3y_pct": 111.50837015439747, "fcf_conversion_pct": 137.52235365805194, "gross_margin_pct": 79.46, "op_margin_pct": 35.89, "earnings_surprise_pct": -5.1128, "surprise_streak": 0, "estimate_revision_ratio_pct": 92.85714285714286, "fcf_ttm_m": null}, "data_quality": "high", "risk_flags": [], "cn_sector": "科技"}, {"rank": 15, "rank_change": "↑21", "ticker": "FTI", "name": "TECHNIPFMC PLC", "sector": "Energy", "market_cap": 28303849637.607334, "scores": {"overall": 73.9, "accel": 72.4, "quality": 67.3, "capital": 74.6, "expect": 94.6}, "rs": {"rs_3m": 1.09, "rs_6m": 47.41}, "indicators": {"rev_accel_pp": 1.7199999999999989, "eps_accel_pp": 55.12, "gross_margin_expansion_pp": 5.899999999999999, "fcf_growth_accel_pp": -43.16028073910054, "fcf_growth_yoy_pct": 364.00565171317555, "fcf_cagr_3y_pct": 127.88376548327696, "fcf_conversion_pct": 131.91403896364733, "gross_margin_pct": 22.59, "op_margin_pct": 13.84, "earnings_surprise_pct": 11.7709, "surprise_streak": 4, "estimate_revision_ratio_pct": 100.0, "fcf_ttm_m": null}, "data_quality": "high", "risk_flags": [], "cn_sector": "能源"}];
+const WL_STOCKS=[{"ticker": "SOXL", "name": "", "sector": "", "market_cap": null, "scores": {"overall": 61.0, "accel": 50.0, "quality": 50.0, "capital": 100.0, "expect": 35.0}, "rs": {"rs_3m": 179.77, "rs_6m": 419.26}, "indicators": {"rev_accel_pp": null, "eps_accel_pp": null, "gross_margin_expansion_pp": null, "fcf_growth_accel_pp": null, "fcf_growth_yoy_pct": null, "fcf_cagr_3y_pct": null, "fcf_conversion_pct": null, "gross_margin_pct": null, "op_margin_pct": null, "earnings_surprise_pct": null, "surprise_streak": 0, "estimate_revision_ratio_pct": null, "fcf_ttm_m": null}, "data_quality": "low", "risk_flags": [], "in_scan": true, "cn_sector": "其他"}, {"ticker": "SMH", "name": "", "sector": "", "market_cap": null, "scores": {"overall": 61.0, "accel": 50.0, "quality": 50.0, "capital": 100.0, "expect": 35.0}, "rs": {"rs_3m": 30.02, "rs_6m": 58.34}, "indicators": {"rev_accel_pp": null, "eps_accel_pp": null, "gross_margin_expansion_pp": null, "fcf_growth_accel_pp": null, "fcf_growth_yoy_pct": null, "fcf_cagr_3y_pct": null, "fcf_conversion_pct": null, "gross_margin_pct": null, "op_margin_pct": null, "earnings_surprise_pct": null, "surprise_streak": 0, "estimate_revision_ratio_pct": null, "fcf_ttm_m": null}, "data_quality": "low", "risk_flags": [], "in_scan": true, "cn_sector": "其他"}, {"ticker": "NVDA", "name": "", "sector": "", "market_cap": null, "scores": {"overall": 79.9, "accel": 89.7, "quality": 87.7, "capital": 55.3, "expect": 82.2}, "rs": {"rs_3m": 2.85, "rs_6m": 5.83}, "indicators": {"rev_accel_pp": 14.549999999999997, "eps_accel_pp": 103.07999999999998, "gross_margin_expansion_pp": 6.02000000000001, "fcf_growth_accel_pp": -6.59637694594033, "fcf_growth_yoy_pct": 136.83205287780592, "fcf_cagr_3y_pct": 214.84623194377642, "fcf_conversion_pct": 81.48905691585196, "gross_margin_pct": 74.15, "op_margin_pct": 64.02, "earnings_surprise_pct": 4.3119, "surprise_streak": 4, "estimate_revision_ratio_pct": 98.50746268656717, "fcf_ttm_m": null}, "data_quality": "high", "risk_flags": [], "in_scan": true, "cn_sector": "其他"}, {"ticker": "AMD", "name": "", "sector": "", "market_cap": null, "scores": {"overall": 81.5, "accel": 73.0, "quality": 78.8, "capital": 100.0, "expect": 75.5}, "rs": {"rs_3m": 128.23, "rs_6m": 105.26}, "indicators": {"rev_accel_pp": 2.8800000000000026, "eps_accel_pp": -31.150000000000006, "gross_margin_expansion_pp": 2.6499999999999986, "fcf_growth_accel_pp": 181.75148054366903, "fcf_growth_yoy_pct": 329.73308504034765, "fcf_cagr_3y_pct": 47.96645526227932, "fcf_conversion_pct": 164.55906821963396, "gross_margin_pct": 50.28, "op_margin_pct": 11.65, "earnings_surprise_pct": 4.7881, "surprise_streak": 3, "estimate_revision_ratio_pct": 97.82608695652173, "fcf_ttm_m": null}, "data_quality": "high", "risk_flags": [], "in_scan": true, "cn_sector": "其他"}, {"ticker": "VRT", "name": "", "sector": "", "market_cap": null, "scores": {"overall": 81.8, "accel": 71.1, "quality": 78.4, "capital": 94.9, "expect": 100.0}, "rs": {"rs_3m": 23.89, "rs_6m": 81.85}, "indicators": {"rev_accel_pp": 1.1799999999999997, "eps_accel_pp": 4.909999999999997, "gross_margin_expansion_pp": 3.789999999999999, "fcf_growth_accel_pp": 13.924416548797735, "fcf_growth_yoy_pct": 64.5940594059406, "fcf_cagr_3y_pct": null, "fcf_conversion_pct": 130.14953417364754, "gross_margin_pct": 37.15, "op_margin_pct": 17.66, "earnings_surprise_pct": 16.0024, "surprise_streak": 4, "estimate_revision_ratio_pct": 96.55172413793103, "fcf_ttm_m": null}, "data_quality": "high", "risk_flags": [], "in_scan": true, "cn_sector": "其他"}, {"ticker": "LEU", "name": "", "sector": "", "market_cap": null, "scores": {"overall": 27.6, "accel": 31.4, "quality": 29.0, "capital": 0.0, "expect": 77.5}, "rs": {"rs_3m": -20.33, "rs_6m": -40.35}, "indicators": {"rev_accel_pp": 8.969999999999999, "eps_accel_pp": -19.28, "gross_margin_expansion_pp": -7.32, "fcf_growth_accel_pp": -287.34496919917865, "fcf_growth_yoy_pct": 500, "fcf_cagr_3y_pct": null, "fcf_conversion_pct": 44.285714285714285, "gross_margin_pct": 25.67, "op_margin_pct": 6.74, "earnings_surprise_pct": 88.4422, "surprise_streak": 1, "estimate_revision_ratio_pct": 100.0, "fcf_ttm_m": null}, "data_quality": "high", "risk_flags": [], "in_scan": true, "cn_sector": "其他"}, {"ticker": "MSFT", "name": "", "sector": "", "market_cap": null, "scores": {"overall": 53.1, "accel": 49.3, "quality": 71.7, "capital": 29.9, "expect": 80.1}, "rs": {"rs_3m": -0.46, "rs_6m": -23.44}, "indicators": {"rev_accel_pp": 0.4299999999999997, "eps_accel_pp": -6.43, "gross_margin_expansion_pp": -0.6599999999999966, "fcf_growth_accel_pp": 12.19976339964483, "fcf_growth_yoy_pct": 5.296992715273022, "fcf_cagr_3y_pct": 4.907937241842775, "fcf_conversion_pct": 54.63907533499721, "gross_margin_pct": 68.31, "op_margin_pct": 46.75, "earnings_surprise_pct": 3.0604, "surprise_streak": 4, "estimate_revision_ratio_pct": 100.0, "fcf_ttm_m": null}, "data_quality": "high", "risk_flags": [], "in_scan": true, "cn_sector": "其他"}, {"ticker": "GOOGL", "name": "", "sector": "", "market_cap": null, "scores": {"overall": 63.7, "accel": 68.4, "quality": 68.1, "capital": 65.3, "expect": 30.0}, "rs": {"rs_3m": 13.47, "rs_6m": 8.24}, "indicators": {"rev_accel_pp": 4.34, "eps_accel_pp": 33.449999999999996, "gross_margin_expansion_pp": 2.9499999999999957, "fcf_growth_accel_pp": 18.29989726666901, "fcf_growth_yoy_pct": -11.13849120786404, "fcf_cagr_3y_pct": 3.3779027924679905, "fcf_conversion_pct": 53.50277383563411, "gross_margin_pct": 60.37, "op_margin_pct": 32.69, "earnings_surprise_pct": -3.1459, "surprise_streak": 0, "estimate_revision_ratio_pct": 100.0, "fcf_ttm_m": null}, "data_quality": "high", "risk_flags": [], "in_scan": true, "cn_sector": "其他"}, {"ticker": "RKLB", "name": "", "sector": "", "market_cap": null, "scores": {"overall": 72.8, "accel": 60.9, "quality": 57.5, "capital": 100.0, "expect": 91.0}, "rs": {"rs_3m": 83.8, "rs_6m": 207.68}, "indicators": {"rev_accel_pp": 17.630000000000003, "eps_accel_pp": null, "gross_margin_expansion_pp": 18.950000000000003, "fcf_growth_accel_pp": -10.843221149660875, "fcf_growth_yoy_pct": -100, "fcf_cagr_3y_pct": null, "fcf_conversion_pct": 149.7659070248911, "gross_margin_pct": 36.56, "op_margin_pct": -34.07, "earnings_surprise_pct": 14.1104, "surprise_streak": 3, "estimate_revision_ratio_pct": 100.0, "fcf_ttm_m": null}, "data_quality": "medium", "risk_flags": [], "in_scan": true, "cn_sector": "其他"}, {"ticker": "LLY", "name": "", "sector": "", "market_cap": null, "scores": {"overall": 57.5, "accel": 61.2, "quality": 63.2, "capital": 28.8, "expect": 100.0}, "rs": {"rs_3m": -8.79, "rs_6m": -12.28}, "indicators": {"rev_accel_pp": 8.11, "eps_accel_pp": 40.619999999999976, "gross_margin_expansion_pp": 3.9200000000000017, "fcf_growth_accel_pp": -19.035729546172448, "fcf_growth_yoy_pct": -15.655477893368012, "fcf_cagr_3y_pct": null, "fcf_conversion_pct": 36.3704366643068, "gross_margin_pct": 82.83, "op_margin_pct": 43.63, "earnings_surprise_pct": 27.0431, "surprise_streak": 4, "estimate_revision_ratio_pct": 96.7741935483871, "fcf_ttm_m": null}, "data_quality": "high", "risk_flags": [], "in_scan": true, "cn_sector": "其他"}, {"ticker": "XLV", "name": "", "sector": "", "market_cap": null, "scores": {"overall": 40.9, "accel": 50.0, "quality": 50.0, "capital": 19.4, "expect": 35.0}, "rs": {"rs_3m": -14.63, "rs_6m": -14.78}, "indicators": {"rev_accel_pp": null, "eps_accel_pp": null, "gross_margin_expansion_pp": null, "fcf_growth_accel_pp": null, "fcf_growth_yoy_pct": null, "fcf_cagr_3y_pct": null, "fcf_conversion_pct": null, "gross_margin_pct": null, "op_margin_pct": null, "earnings_surprise_pct": null, "surprise_streak": 0, "estimate_revision_ratio_pct": null, "fcf_ttm_m": null}, "data_quality": "low", "risk_flags": [], "in_scan": true, "cn_sector": "其他"}];
+const SECTORS=["科技", "工业", "能源", "通信"];
+const DROPPED=["FICO", "UAL", "PTC", "DECK", "CDE", "EXPE", "EFX", "RBC", "ODFL", "CBOE", "GWRE", "EQT", "GEN", "PODD", "DXCM", "HSY", "WDAY", "NTRS", "RL", "VRSK", "HL", "PAYX", "ZBRA", "GRMN", "NYT", "INCY", "RMD", "TPR", "FIS", "IDXX", "OKTA", "AU", "IAG", "TRMB", "VLTO", "ZBH", "THC", "STE", "GDDY"];
+const EXPLAIN_DATA={"overall": {"title": "综合分", "sub": "四个维度加权合成的最终得分（0–100）", "inds": [{"name": "综合分计算公式", "formula": "综合分 = 加速度×40% + 质量×25% + 资本行动×25% + 预期×10%", "desc": "每个维度0–100分，综合分也是0–100分。分数越高代表成长加速、盈利质量、资本关注、市场预期综合表现越强。", "scoring": [["≥80", "优秀，值得重点关注"], ["65–79", "良好，有潜力"], ["50–64", "中等，持续观察"], ["<50", "偏弱，暂不考虑"]]}]}, "accel": {"title": "加速度维度（权重 40%）", "sub": "捕捉成长拐点——找的是加速，不是现状", "inds": [{"name": "营收增速加速度", "weight": "15%", "formula": "营收加速度 = 最新季同比增速 - TTM同比增速", "desc": "正值=营收在加速，负值=在减速。举例：最新季同比+28%，TTM同比+12%，加速度=+16pp。", "scoring": [["≥+15pp", "100分"], ["≥+3pp", "50分（线性插值）"], ["≤-10pp", "0分"], ["缺失", "50分（中性）"]]}, {"name": "EPS 增速加速度", "weight": "15%", "formula": "EPS加速度 = 最新季EPS同比 - TTM EPS同比", "desc": "衡量每股盈利增速是否加快。来源：Finnhub metrics。", "scoring": [["≥+30pp", "100分"], ["≥+5pp", "50分"], ["≤-20pp", "0分"], ["缺失", "50分"]]}, {"name": "毛利率扩张速度", "weight": "15%", "formula": "毛利率扩张 = 毛利率TTM - 毛利率5年均值", "desc": "反映定价权和规模效应是否在增强。持续扩张说明护城河在加深。", "scoring": [["≥+5pp", "100分"], ["≥+1pp", "50分"], ["≤-3pp", "0分"], ["缺失", "50分"]]}, {"name": "FCF 增速加速度 ⭐", "weight": "30%", "formula": "FCF加速度 = 最新季FCF同比增速 - 上季FCF同比增速", "desc": "核心指标。自由现金流加速说明真实造血能力在提升，是最难造假的信号。", "scoring": [["≥+20pp", "100分"], ["≥-20pp", "50分"], ["≤-100pp", "0分"], ["缺失", "50分"]]}, {"name": "FCF 增速 YoY", "weight": "15%", "formula": "FCF YoY = (本季FCF - 去年同季FCF) / |去年同季FCF| × 100%", "desc": "自由现金流同比增速，反映绝对成长速度。", "scoring": [["≥+100%", "100分"], ["≥+20%", "50分"], ["≤-30%", "0分"], ["缺失", "50分"]]}, {"name": "FCF CAGR 3年", "weight": "10%", "formula": "FCF CAGR = (最新TTM FCF / 3年前TTM FCF)^(1/3) - 1", "desc": "三年复合增长率，过滤单季度噪音，看长期造血趋势。", "scoring": [["≥+30%", "100分"], ["≥+10%", "50分"], ["≤0%", "0分"], ["缺失", "50分"]]}]}, "quality": {"title": "质量维度（权重 25%）", "sub": "验证成长不是虚胖——FCF 是真实的吗？", "inds": [{"name": "FCF 转化率", "weight": "40%", "formula": "FCF转化率 = 自由现金流TTM / 净利润TTM × 100%", "desc": ">100%说明公司高效把利润转为现金，会计质量高。<70%可能有应收账款膨胀或资本开支过大风险。", "scoring": [["≥100%", "100分"], ["≥70%", "50分"], ["≤30%", "0分"], ["缺失", "50分"]]}, {"name": "毛利率水平", "weight": "30%", "formula": "毛利率 = (营收 - 营业成本) / 营收 × 100%", "desc": "代表产品/服务定价权。SaaS软件通常>70%，制造业通常20–40%。", "scoring": [["≥70%", "100分"], ["≥30%", "50分"], ["≤10%", "0分"], ["缺失", "50分"]]}, {"name": "营业利润率", "weight": "30%", "formula": "营业利润率 = 营业利润TTM / 营收TTM × 100%", "desc": "反映主营业务真实盈利能力，排除财务费用和税的影响。", "scoring": [["≥30%", "100分"], ["≥10%", "50分"], ["≤0%", "0分"], ["缺失", "50分"]]}]}, "capital": {"title": "资本行动维度（权重 25%）", "sub": "全球聪明钱是否在行动——财务数据之前的早期信号", "inds": [{"name": "RS 超额收益 3个月", "weight": "50%", "formula": "RS_3m = 股票3个月涨幅 - SPY同期涨幅", "desc": "正值=跑赢大盘，资金已在流入。举例：股票+40%，SPY+9% → RS_3m=+31pp。来源：Polygon.io，基准：SPY。", "scoring": [["≥+30pp", "100分"], ["≥0pp", "50分"], ["≤-20pp", "0分"], ["缺失", "50分"]]}, {"name": "RS 超额收益 6个月", "weight": "50%", "formula": "RS_6m = 股票6个月涨幅 - SPY同期涨幅", "desc": "中期维度，过滤短期噪音，确认资金趋势是否持续。", "scoring": [["≥+50pp", "100分"], ["≥0pp", "50分"], ["≤-30pp", "0分"], ["缺失", "50分"]]}]}, "expect": {"title": "预期维度（权重 10%）", "sub": "市场和分析师的判断——权重低因为分析师是滞后指标", "inds": [{"name": "业绩超预期幅度", "weight": "40%", "formula": "超预期幅度 = (实际EPS - 预期EPS) / |预期EPS| × 100%", "desc": "正值=超预期，负值=不及预期。连续超预期是管理层保守指引+执行力强的体现。", "scoring": [["≥+15%", "100分"], ["≥+3%", "50分"], ["≤-3%", "0分"], ["缺失", "50分"]]}, {"name": "超预期连续季度数", "weight": "30%", "formula": "过去4季度中超预期（实际EPS > 预期EPS）的季度数", "desc": "连续4季超预期是管理层高度可信赖的信号，也说明市场对公司理解不足。", "scoring": [["4季度", "100分"], ["2季度", "50分"], ["0季度", "0分"], ["缺失", "50分"]]}, {"name": "分析师看多比例", "weight": "30%", "formula": "看多比例 = (Buy + Strong Buy数量) / 总评级数量 × 100%", "desc": "反映机构分析师整体态度。注意：分析师评级滞后，仅作辅助参考。", "scoring": [["≥90%", "100分"], ["≥60%", "50分"], ["≤30%", "0分"], ["缺失", "50分"]]}]}};
+const IND_TO_DIM={"rev_accel_pp": "accel", "eps_accel_pp": "accel", "gross_margin_expansion_pp": "accel", "fcf_growth_accel_pp": "accel", "fcf_growth_yoy_pct": "accel", "fcf_cagr_3y_pct": "accel", "fcf_conversion_pct": "quality", "gross_margin_pct": "quality", "op_margin_pct": "quality", "earnings_surprise_pct": "expect", "surprise_streak": "expect", "estimate_revision_ratio_pct": "expect", "rs_3m": "capital", "rs_6m": "capital"};
+const IND_LABELS={"rev_accel_pp": "营收加速度", "eps_accel_pp": "EPS 加速度", "gross_margin_expansion_pp": "毛利率扩张", "fcf_growth_accel_pp": "FCF 加速度", "fcf_growth_yoy_pct": "FCF 增速 YoY", "fcf_cagr_3y_pct": "FCF CAGR 3Y", "fcf_conversion_pct": "FCF 转化率", "gross_margin_pct": "毛利率", "op_margin_pct": "营业利润率", "earnings_surprise_pct": "业绩超预期", "surprise_streak": "超预期连续", "estimate_revision_ratio_pct": "分析师看多比"};
+const IND_SUFFIXES={"rev_accel_pp": "pp", "eps_accel_pp": "pp", "gross_margin_expansion_pp": "pp", "fcf_growth_accel_pp": "pp", "fcf_growth_yoy_pct": "%", "fcf_cagr_3y_pct": "%", "fcf_conversion_pct": "%", "gross_margin_pct": "%", "op_margin_pct": "%", "earnings_surprise_pct": "%", "surprise_streak": "Q", "estimate_revision_ratio_pct": "%"};
+const IND_COLUMNS=["rev_accel_pp", "eps_accel_pp", "gross_margin_expansion_pp", "fcf_growth_accel_pp", "fcf_growth_yoy_pct", "fcf_cagr_3y_pct", "fcf_conversion_pct", "gross_margin_pct", "op_margin_pct", "earnings_surprise_pct", "surprise_streak", "estimate_revision_ratio_pct"];
+const UPDATED_AT="2026-05-26 01:35 UTC";
+const UNIV_SIZE=386;
+const VERSION="v2.0";
+const FINNHUB_KEY="d81tmqpr01qrojfd68b0d81tmqpr01qrojfd68bg";
 
-const ALL_MAP    = Object.fromEntries([...STOCKS,...WL_STOCKS].map(s=>[s.ticker,s]));
-const WL_TICKERS = new Set(WL_STOCKS.map(s=>s.ticker));
-const LS_KEY     = 'alphascout_wl_v2';
+const ALL_MAP=Object.fromEntries([...STOCKS,...WL_STOCKS].map(s=>[s.ticker,s]));
+const LS_KEY='alphascout_wl_v2';
+const EXPLAIN_PWD='Thermal@222';
+let explainUnlocked=false;
+let wlTickers=(()=>{try{const s=localStorage.getItem(LS_KEY);if(s)return JSON.parse(s);}catch(e){}return WL_STOCKS.map(s=>s.ticker);})();
+let scoreMap=Object.fromEntries(WL_STOCKS.map(s=>[s.ticker,s]));
+let activeSector='ALL',expandedTick=null,explainTarget=null;
 
-function loadWLTickers() {
-  try { const s=localStorage.getItem(LS_KEY); if(s) return JSON.parse(s); } catch(e) {}
-  return WL_STOCKS.map(s=>s.ticker);
+function cls(v){
+  if(v==null)return'cna';
+  if(v>=90)return'c90';if(v>=80)return'c80';if(v>=70)return'c70';return'c60';
 }
-function saveWLTickers(t) { localStorage.setItem(LS_KEY,JSON.stringify(t)); }
-
-let wlTickers = loadWLTickers();
-let scoreMap  = Object.fromEntries(WL_STOCKS.map(s=>[s.ticker,s]));
-
-function getWLStocks() {
-  return wlTickers.map(t=>scoreMap[t]||{
-    ticker:t,name:'',sector:'',market_cap:null,cn_sector:'其他',
-    scores:{overall:null,accel:null,quality:null,capital:null,expect:null},
-    rs:{},indicators:{},data_quality:'low',risk_flags:[],in_scan:false
-  });
-}
-
-function cls(v) {
-  if(v==null) return 'cna';
-  if(v>=90) return 'c90'; if(v>=80) return 'c80';
-  if(v>=70) return 'c70'; return 'c60';
-}
-
-function scoreCell(v) {
+function scoreCell(v){
   const c=cls(v),pct=v!=null?Math.min(100,Math.max(0,+v)):0;
   const txt=v!=null?(+v).toFixed(1):'—';
-  return `<div class="sw ${c}"><div class="sbar"><div class="sbar-fill" data-pct="${pct}"></div></div><span class="sval">${txt}</span></div>`;
+  return '<div class="sw '+c+'"><div class="sbar"><div class="sbar-fill" data-pct="'+pct+'"></div></div><span class="sval">'+txt+'</span></div>';
 }
-
-function dqBadge(dq) {
-  if(!dq||dq==='low')  return '<span class="dq dq-l">low</span>';
-  if(dq==='medium')     return '<span class="dq dq-m">mid</span>';
-  return '<span class="dq dq-h">high</span>';
+function dqBadge(dq){
+  if(!dq||dq==='low')return'<span class="dq dq-l">low</span>';
+  if(dq==='medium')return'<span class="dq dq-m">mid</span>';
+  return'<span class="dq dq-h">high</span>';
 }
-
-function fmtMcap(m) {
-  if(m==null) return '—';
+function fmtMcap(m){
+  if(m==null)return'—';
   const b=m/1e9;
-  if(b>=100) return `$${b.toFixed(0)}b`;
-  if(b>=10)  return `$${b.toFixed(1)}b`;
-  return `$${b.toFixed(2)}b`;
+  if(b>=100)return'$'+b.toFixed(0)+'b';
+  if(b>=10)return'$'+b.toFixed(1)+'b';
+  return'$'+b.toFixed(2)+'b';
 }
-
-function fmtFCF(s) {
-  const ind=s.indicators||{};
-  const fcf=ind.fcf_ttm_m, yoy=ind.fcf_growth_yoy_pct;
-  if(fcf==null) return '<span class="cna">—</span>';
-  const b=Math.abs(fcf)/1000;
-  const sign=fcf<0?'-':'';
-  const absStr=b>=1?`${sign}$${b.toFixed(1)}b`:`${sign}$${Math.abs(fcf).toFixed(0)}m`;
+function fmtFCF(s){
+  const ind=s.indicators||{},fcf=ind.fcf_ttm_m,yoy=ind.fcf_growth_yoy_pct;
+  if(fcf==null)return'<span class="cna">—</span>';
+  const b=Math.abs(fcf)/1000,sign=fcf<0?'-':'';
+  const absStr=b>=1?sign+'$'+b.toFixed(1)+'b':sign+'$'+Math.abs(fcf).toFixed(0)+'m';
   let yoyHtml='';
-  if(yoy!=null){
-    const n=+yoy,yc=n>0?'pos':(n<0?'neg':'na'),ys=n>0?'+':'';
-    yoyHtml=`<span class="fcf-yoy ${yc}">${ys}${n.toFixed(1)}%</span>`;
-  }
-  return `<div class="fcf-wrap"><span class="fcf-abs">${absStr}</span>${yoyHtml}</div>`;
+  if(yoy!=null){const n=+yoy,yc=n>0?'pos':(n<0?'neg':'na'),ys=n>0?'+':'';
+    yoyHtml='<span class="fcf-yoy '+yc+'">'+ys+n.toFixed(1)+'%</span>';}
+  return'<div class="fcf-wrap"><span class="fcf-abs">'+absStr+'</span>'+yoyHtml+'</div>';
 }
-
-function fmtRS(rs) {
-  const v=rs?.rs_3m;
-  if(v==null) return '<span class="rs-val na">—</span>';
-  const c=v>0?'pos':(v<0?'neg':'na'),s=v>0?'+':'';
-  return `<span class="rs-val ${c}">${s}${v.toFixed(1)}%</span>`;
+function chgCell(chg){
+  if(!chg||chg==='—')return'<span class="chg-flat">—</span>';
+  if(chg==='NEW')return'<span class="chg-new">NEW</span>';
+  if(chg.startsWith('↑'))return'<span class="chg-up">'+chg+'</span>';
+  if(chg.startsWith('↓'))return'<span class="chg-dn">'+chg+'</span>';
+  return'<span class="chg-flat">'+chg+'</span>';
 }
-
-function chgCell(chg) {
-  if(!chg||chg==='—') return '<span class="chg-flat">—</span>';
-  if(chg==='NEW')     return '<span class="chg-new">NEW</span>';
-  if(chg.startsWith('↑')) return `<span class="chg-up">${chg}</span>`;
-  if(chg.startsWith('↓')) return `<span class="chg-dn">${chg}</span>`;
-  return `<span class="chg-flat">${chg}</span>`;
-}
-
-function fmtRaw(v,sfx) {
-  if(v==null) return null;
+function fmtRaw(v,sfx){
+  if(v==null)return null;
   return sfx==='Q'?String(Math.round(+v)):(+v).toFixed(1);
 }
-
-let activeSector='ALL', expandedTick=null;
-
-function detailHtml(s) {
-  const ind=s.indicators||{}, rs=s.rs||{};
+function detailHtml(s){
+  const ind=s.indicators||{},rs=s.rs||{};
   let rsHtml='';
-  if(rs.rs_3m!=null||rs.rs_6m!=null) {
-    const r3=rs.rs_3m!=null?`RS 3m: ${rs.rs_3m>0?'+':''}${rs.rs_3m.toFixed(1)}%`:'';
-    const r6=rs.rs_6m!=null?`RS 6m: ${rs.rs_6m>0?'+':''}${rs.rs_6m.toFixed(1)}%`:'';
-    rsHtml=`<div class="detail-rs">📈 资本行动 · RS 超额收益（相对 SPY）&ensp;|&ensp;${[r3,r6].filter(Boolean).join('&ensp;|&ensp;')}</div>`;
+  if(rs.rs_3m!=null||rs.rs_6m!=null){
+    const r3=rs.rs_3m!=null?'RS 3m: '+(rs.rs_3m>0?'+':'')+rs.rs_3m.toFixed(1)+'%':'';
+    const r6=rs.rs_6m!=null?'RS 6m: '+(rs.rs_6m>0?'+':'')+rs.rs_6m.toFixed(1)+'%':'';
+    rsHtml='<div class="detail-rs">📈 资本行动 · 超额收益（相对SPY）&ensp;|&ensp;'+[r3,r6].filter(Boolean).join('&ensp;|&ensp;')+'</div>';
   }
-  const cards=IND_META.map(([key,label,sfx])=>{
-    const raw=ind[key],fv=fmtRaw(raw,sfx);
+  const cards=IND_COLUMNS.map(function(key){
+    const raw=ind[key],sfx=IND_SUFFIXES[key]||'',label=IND_LABELS[key]||key;
+    const fv=fmtRaw(raw,sfx);
     let vc='na',display='N/A',sfxHtml='';
-    if(fv!==null){const n=+raw;vc=n>0.001?'pos':(n<-0.001?'neg':'');display=fv;sfxHtml=`<span class="ind-sfx">${sfx}</span>`;}
-    return `<div class="ind-card"><div class="ind-label">${label}</div><div class="ind-val ${vc}">${display}${sfxHtml}</div></div>`;
+    if(fv!==null){const n=+raw;vc=n>0.001?'pos':(n<-0.001?'neg':'');display=fv;sfxHtml='<span class="ind-sfx">'+sfx+'</span>';}
+    const dimKey=IND_TO_DIM[key]||'overall';
+    return'<div class="ind-card" onclick="openExplain(''+dimKey+'')" title="点击查看说明">'+
+      '<div class="ind-label">'+label+'</div>'+
+      '<div class="ind-val '+vc+'">'+display+sfxHtml+'</div></div>';
   }).join('');
-  return rsHtml+`<div class="ind-grid">${cards}</div>`;
+  return rsHtml+'<div class="ind-grid">'+cards+'</div>';
 }
 
-function render() {
+function render(){
   const wlSet=new Set(wlTickers);
   let list;
-  if(activeSector==='WL') {
-    const wl=getWLStocks();
-    const sc=wl.filter(s=>s.scores?.overall!=null).sort((a,b)=>(b.scores.overall||0)-(a.scores.overall||0));
-    list=[...sc,...wl.filter(s=>s.scores?.overall==null)];
-  } else if(activeSector==='ALL') {
-    list=[...STOCKS].sort((a,b)=>(b.scores?.overall||0)-(a.scores?.overall||0));
-  } else {
-    list=STOCKS.filter(s=>s.cn_sector===activeSector).sort((a,b)=>(b.scores?.overall||0)-(a.scores?.overall||0));
+  if(activeSector==='WL'){
+    const wl=wlTickers.map(t=>scoreMap[t]||{ticker:t,name:'',sector:'',market_cap:null,cn_sector:'其他',scores:{overall:null,accel:null,quality:null,capital:null,expect:null},rs:{},indicators:{},data_quality:'low',risk_flags:[],in_scan:false});
+    const sc=wl.filter(s=>s.scores&&s.scores.overall!=null).sort((a,b)=>(b.scores.overall||0)-(a.scores.overall||0));
+    list=[...sc,...wl.filter(s=>!s.scores||s.scores.overall==null)];
+  }else if(activeSector==='ALL'){
+    list=[...STOCKS].sort((a,b)=>(b.scores&&b.scores.overall||0)-(a.scores&&a.scores.overall||0));
+  }else{
+    list=STOCKS.filter(s=>s.cn_sector===activeSector).sort((a,b)=>(b.scores&&b.scores.overall||0)-(a.scores&&a.scores.overall||0));
   }
-
   const tbody=document.getElementById('tbody');
   document.getElementById('empty').style.display=list.length?'none':'block';
   tbody.innerHTML='';
-
-  list.forEach((s,i)=>{
+  list.forEach(function(s,i){
     const sc=s.scores||{},isWL=wlSet.has(s.ticker),isExp=expandedTick===s.ticker;
     const sec=s.cn_sector||'其他';
     const tr=document.createElement('tr');
     tr.className='stock-row'+(isWL?' is-wl':'')+(isExp?' expanded':'');
     tr.dataset.ticker=s.ticker;
-    tr.innerHTML=`
-      <td class="td-rank">${sc.overall!=null?i+1:'—'}</td>
-      <td class="td-chg">${chgCell(s.rank_change||'—')}</td>
-      <td class="td-ticker">${isWL?'<span class="wl-mark"></span>':''}<span>${s.ticker}</span></td>
-      <td class="td-name" title="${s.name||''}">${(s.name||'').substring(0,24)}</td>
-      <td><span class="sbadge sb-${sec}">${sec}</span></td>
-      <td class="td-mcap">${fmtMcap(s.market_cap)}</td>
-      <td class="td-fcf">${fmtFCF(s)}</td>
-      <td class="td-score">${scoreCell(sc.overall)}</td>
-      <td class="td-score">${scoreCell(sc.accel)}</td>
-      <td class="td-score">${scoreCell(sc.quality)}</td>
-      <td class="td-score">${scoreCell(sc.capital)}</td>
-      <td class="td-score">${scoreCell(sc.expect)}</td>
-      <td class="td-dq">${dqBadge(s.data_quality)}</td>
-      <td class="td-arr"><span class="arr-icon">▶</span></td>`;
-    tr.addEventListener('click',()=>toggle(s.ticker));
+    tr.innerHTML=
+      '<td class="td-rank">'+(sc.overall!=null?i+1:'—')+'</td>'+
+      '<td class="td-chg">'+chgCell(s.rank_change||'—')+'</td>'+
+      '<td class="td-ticker">'+(isWL?'<span class="wl-mark"></span>':'')+'<span>'+s.ticker+'</span></td>'+
+      '<td class="td-name" title="'+(s.name||'')+'">'+(s.name||'').substring(0,24)+'</td>'+
+      '<td><span class="sbadge sb-'+sec+'">'+sec+'</span></td>'+
+      '<td class="td-mcap">'+fmtMcap(s.market_cap)+'</td>'+
+      '<td class="td-fcf">'+fmtFCF(s)+'</td>'+
+      '<td class="td-score">'+scoreCell(sc.overall)+'</td>'+
+      '<td class="td-score">'+scoreCell(sc.accel)+'</td>'+
+      '<td class="td-score">'+scoreCell(sc.quality)+'</td>'+
+      '<td class="td-score">'+scoreCell(sc.capital)+'</td>'+
+      '<td class="td-score">'+scoreCell(sc.expect)+'</td>'+
+      '<td class="td-dq">'+dqBadge(s.data_quality)+'</td>'+
+      '<td class="td-arr"><span class="arr-icon">&#9658;</span></td>';
+    tr.addEventListener('click',function(){toggle(s.ticker);});
     tbody.appendChild(tr);
     const dr=document.createElement('tr');
     dr.className='detail-row'+(isExp?' open':'');
     dr.dataset.ticker=s.ticker;
     const dc=document.createElement('td');
     dc.className='detail-cell';dc.colSpan=14;
-    if(isExp) dc.innerHTML=detailHtml(s);
+    if(isExp)dc.innerHTML=detailHtml(s);
     dr.appendChild(dc);tbody.appendChild(dr);
   });
-
-  requestAnimationFrame(()=>{
-    document.querySelectorAll('.sbar-fill').forEach(el=>{el.style.width=el.dataset.pct+'%';});
+  requestAnimationFrame(function(){
+    document.querySelectorAll('.sbar-fill').forEach(function(el){el.style.width=el.dataset.pct+'%';});
   });
 }
 
-function toggle(ticker) {
+function toggle(ticker){
   expandedTick=expandedTick===ticker?null:ticker;
   render();
-  if(expandedTick) setTimeout(()=>{
-    const el=document.querySelector(`tr.expanded[data-ticker="${ticker}"]`);
-    if(el) el.scrollIntoView({behavior:'smooth',block:'nearest'});
+  if(expandedTick)setTimeout(function(){
+    const el=document.querySelector('tr.expanded[data-ticker="'+ticker+'"]');
+    if(el)el.scrollIntoView({behavior:'smooth',block:'nearest'});
   },40);
 }
 
-function setFilter(s) {
+function setFilter(s){
   activeSector=s;expandedTick=null;
-  document.querySelectorAll('.pill').forEach(btn=>btn.classList.toggle('active',btn.dataset.s===s));
+  document.querySelectorAll('.pill').forEach(function(btn){btn.classList.toggle('active',btn.dataset.s===s);});
   render();
 }
 
-function buildFilters() {
+function buildFilters(){
   const row=document.getElementById('filter-row');
-  SECTORS.forEach(s=>{
+  SECTORS.forEach(function(s){
     const btn=document.createElement('button');
     btn.className='pill';btn.dataset.s=s;btn.textContent=s;
-    btn.onclick=()=>setFilter(s);row.appendChild(btn);
+    btn.onclick=function(){setFilter(s);};row.appendChild(btn);
   });
 }
 
-function buildWLBar() {
+function getWLStocks(){
+  return wlTickers.map(function(t){
+    return scoreMap[t]||{ticker:t,name:'',sector:'',market_cap:null,cn_sector:'其他',
+      scores:{overall:null,accel:null,quality:null,capital:null,expect:null},
+      rs:{},indicators:{},data_quality:'low',risk_flags:[],in_scan:false};
+  });
+}
+
+function buildWLBar(){
   const wl=getWLStocks();
-  if(!wl.length) return;
+  if(!wl.length)return;
   document.getElementById('wl-bar').style.display='block';
   document.getElementById('pill-wl').style.display='inline-flex';
   const container=document.getElementById('wl-chips');
   container.innerHTML='';
-  wl.forEach(s=>{
-    const ov=s.scores?.overall;
+  wl.forEach(function(s){
+    const ov=s.scores&&s.scores.overall;
     const chip=document.createElement('div');
     chip.className='wl-chip'+(ov==null?' dim':'');
-    chip.innerHTML=`<span class="wl-tick">${s.ticker}</span><span class="wl-score ${cls(ov)}">${ov!=null?(+ov).toFixed(1):'—'}</span>`;
-    if(ov!=null) chip.onclick=()=>toggle(s.ticker);
+    chip.innerHTML='<span class="wl-tick">'+s.ticker+'</span><span class="wl-score '+cls(ov)+'">'+(ov!=null?(+ov).toFixed(1):'—')+'</span>';
+    if(ov!=null)chip.onclick=function(){toggle(s.ticker);};
     container.appendChild(chip);
   });
 }
 
-function buildDroppedBar() {
-  if(!DROPPED.length) return;
+function buildDroppedBar(){
+  if(!DROPPED.length)return;
   const bar=document.getElementById('dropped-bar');
   bar.style.display='block';
-  bar.innerHTML=`⬇ 本次跌出榜单：<b>${DROPPED.join(' · ')}</b>`;
+  bar.innerHTML='&#11015; 本次跌出榜单：<b>'+DROPPED.join(' &middot; ')+'</b>';
 }
 
-function openModal() {
-  renderModalList();
-  document.getElementById('modal-overlay').classList.add('open');
-}
-function closeModal() { document.getElementById('modal-overlay').classList.remove('open'); }
-function closeModalOutside(e) { if(e.target===document.getElementById('modal-overlay')) closeModal(); }
+function openModal(){renderModalList();document.getElementById('modal-overlay').classList.add('open');}
+function closeModal(){document.getElementById('modal-overlay').classList.remove('open');}
+function closeModalOutside(e){if(e.target===document.getElementById('modal-overlay'))closeModal();}
 
-function renderModalList() {
-  const list=document.getElementById('modal-list');
-  list.innerHTML='';
-  wlTickers.forEach(tick=>{
-    const s=scoreMap[tick],ov=s?.scores?.overall;
-    const div=document.createElement('div');
-    div.className='wl-list-item';
-    div.innerHTML=`<span class="wl-list-tick">${tick}</span>
-      <span class="wl-list-score ${cls(ov)}">${ov!=null?(+ov).toFixed(1):'—'}</span>
-      <button class="wl-del-btn" onclick="deleteTicker('${tick}')">删除</button>`;
+function renderModalList(){
+  const list=document.getElementById('modal-list');list.innerHTML='';
+  wlTickers.forEach(function(tick){
+    const s=scoreMap[tick],ov=s&&s.scores&&s.scores.overall;
+    const div=document.createElement('div');div.className='wl-list-item';
+    div.innerHTML='<span class="wl-list-tick">'+tick+'</span>'+
+      '<span class="wl-list-score '+cls(ov)+'">'+(ov!=null?(+ov).toFixed(1):'—')+'</span>'+
+      '<button class="wl-del-btn" onclick="deleteTicker(''+tick+'')">删除</button>';
     list.appendChild(div);
   });
-  if(!wlTickers.length) list.innerHTML='<div style="color:var(--ink4);font-size:11px;padding:8px 0">暂无自选股</div>';
+  if(!wlTickers.length)list.innerHTML='<div style="color:var(--ink4);font-size:11px;padding:8px 0">暂无自选股</div>';
 }
 
-function addTicker() {
+function saveWL(){localStorage.setItem(LS_KEY,JSON.stringify(wlTickers));}
+
+function addTicker(){
   const input=document.getElementById('modal-input');
   const tick=(input.value||'').trim().toUpperCase();
-  if(!tick) return;
-  if(wlTickers.includes(tick)){setMsg(`${tick} 已存在`);return;}
-  wlTickers=[...wlTickers,tick];
-  saveWLTickers(wlTickers);
-  input.value='';
-  renderModalList();buildWLBar();render();
-  setMsg(`已添加 ${tick}`);
+  if(!tick)return;
+  if(wlTickers.includes(tick)){setMsg(tick+' 已存在');return;}
+  wlTickers=[...wlTickers,tick];saveWL();input.value='';
+  renderModalList();buildWLBar();render();setMsg('已添加 '+tick);
 }
 
-function deleteTicker(tick) {
-  wlTickers=wlTickers.filter(t=>t!==tick);
-  saveWLTickers(wlTickers);
-  renderModalList();buildWLBar();render();
-  setMsg(`已删除 ${tick}`);
+function deleteTicker(tick){
+  wlTickers=wlTickers.filter(function(t){return t!==tick;});saveWL();
+  renderModalList();buildWLBar();render();setMsg('已删除 '+tick);
 }
 
-function setMsg(msg) {
-  const el=document.getElementById('modal-msg');
-  el.textContent=msg;
-  setTimeout(()=>{el.textContent='';},3000);
+function setMsg(msg){
+  const el=document.getElementById('modal-msg');el.textContent=msg;
+  setTimeout(function(){el.textContent='';},3000);
+}
+
+function openExplain(key){
+  explainTarget=key;
+  document.getElementById('exp-overlay').classList.add('open');
+  if(explainUnlocked){showExplainContent(key);}
+  else{
+    document.getElementById('exp-lock').style.display='block';
+    document.getElementById('exp-content').style.display='none';
+    setTimeout(function(){document.getElementById('exp-pwd').focus();},100);
+  }
+}
+
+function closeExplain(){document.getElementById('exp-overlay').classList.remove('open');}
+function closeExplainOutside(e){if(e.target===document.getElementById('exp-overlay'))closeExplain();}
+
+function checkPwd(){
+  const pwd=document.getElementById('exp-pwd').value;
+  if(pwd===EXPLAIN_PWD){
+    explainUnlocked=true;
+    document.getElementById('exp-pwd').value='';
+    document.getElementById('exp-err').textContent='';
+    showExplainContent(explainTarget);
+  }else{
+    document.getElementById('exp-err').textContent='密码错误，请重试';
+    document.getElementById('exp-pwd').value='';
+    document.getElementById('exp-pwd').focus();
+  }
+}
+
+function showExplainContent(key){
+  document.getElementById('exp-lock').style.display='none';
+  const content=document.getElementById('exp-content');
+  content.style.display='block';
+  const data=EXPLAIN_DATA[key];
+  if(!data){content.innerHTML='<p style="color:var(--ink3);padding:20px">暂无说明</p>';return;}
+  let html='<div class="exp-dim-title">'+data.title+'</div>'+
+    '<div class="exp-dim-sub">'+data.sub+'</div>';
+  data.inds.forEach(function(ind){
+    const wtHtml=ind.weight?'<span class="exp-ind-hd-wt">维度内权重 '+ind.weight+'</span>':'';
+    let scoreHtml='';
+    if(ind.scoring){
+      scoreHtml='<table class="exp-tbl"><tr><th>数值</th><th>得分</th></tr>'+
+        ind.scoring.map(function(r){return'<tr><td>'+r[0]+'</td><td>'+r[1]+'</td></tr>';}).join('')+
+        '</table>';
+    }
+    html+='<div class="exp-ind">'+
+      '<div class="exp-ind-hd"><span class="exp-ind-hd-name">'+ind.name+'</span>'+wtHtml+'</div>'+
+      '<div class="exp-ind-body">'+
+        '<b>计算公式：</b><code class="exp-formula">'+ind.formula+'</code>'+
+        '<b>含义：</b>'+ind.desc+'<br><br>'+
+        '<b>打分规则（线性插值）：</b>'+scoreHtml+
+      '</div></div>';
+  });
+  content.innerHTML=html;
 }
 
 document.getElementById('js-date').textContent=UPDATED_AT;
 document.getElementById('js-univ').textContent=UNIV_SIZE;
 document.getElementById('js-ver').textContent=VERSION;
-buildFilters();
-buildWLBar();
-buildDroppedBar();
-render();
+buildFilters();buildWLBar();buildDroppedBar();render();
+
 </script>
 </body>
 </html>
