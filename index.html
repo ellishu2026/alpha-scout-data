@@ -506,7 +506,7 @@ function renderModalList(){
     const div=document.createElement('div');div.className='wl-list-item';
     div.innerHTML='<span class="wl-list-tick">'+tick+'</span>'+
       '<span class="wl-list-score '+cls(ov)+'">'+(ov!=null?(+ov).toFixed(1):'—')+'</span>'+
-      '<button class="wl-del-btn" onclick="deleteTicker(''+tick+'')">删除</button>';
+      '<button class="wl-del-btn" data-tick="'+tick+'" onclick="deleteTicker(this.dataset.tick)">删除</button>';
     list.appendChild(div);
   });
   if(!wlTickers.length)list.innerHTML='<div style="color:var(--ink4);font-size:11px;padding:8px 0">暂无自选股</div>';
