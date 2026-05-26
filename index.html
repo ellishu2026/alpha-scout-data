@@ -127,10 +127,6 @@ td{padding:7px 10px;vertical-align:middle;white-space:nowrap}
 .c60{color:var(--c60)} .c60 .sbar-fill{background:var(--bar-60)}
 .cna{color:var(--ink4)}
 
-/* RS 超额收益 */
-.td-rs{text-align:right;padding-right:10px;border-left:1px solid var(--rule2)}
-.rs-val{font-size:10.5px;font-weight:400;color:var(--ink3)}
-.rs-val.pos{color:#4ade80} .rs-val.neg{color:#fca5a5} .rs-val.na{color:var(--ink4)}
 
 /* DQ */
 .td-dq{text-align:right}
@@ -254,7 +250,6 @@ footer{border-top:1px solid var(--rule);padding:12px 32px;font-size:10px;color:v
         <th class="r">质量(25%)</th>
         <th class="r">资本行动(25%)</th>
         <th class="r">预期(10%)</th>
-        <th class="r" style="color:var(--ink4);font-size:9px">RS超额↑</th>
         <th class="r">数据</th>
         <th></th>
       </tr>
@@ -381,7 +376,7 @@ function detailHtml(s) {
   if(rs.rs_3m!=null||rs.rs_6m!=null) {
     const r3=rs.rs_3m!=null?`RS 3m: ${rs.rs_3m>0?'+':''}${rs.rs_3m.toFixed(1)}%`:'';
     const r6=rs.rs_6m!=null?`RS 6m: ${rs.rs_6m>0?'+':''}${rs.rs_6m.toFixed(1)}%`:'';
-    rsHtml=`<div class="detail-rs">📈 相对 SPY 超额收益&ensp;|&ensp;${[r3,r6].filter(Boolean).join('&ensp;|&ensp;')}</div>`;
+    rsHtml=`<div class="detail-rs">📈 资本行动 · RS 超额收益（相对 SPY）&ensp;|&ensp;${[r3,r6].filter(Boolean).join('&ensp;|&ensp;')}</div>`;
   }
   const cards=IND_META.map(([key,label,sfx])=>{
     const raw=ind[key],fv=fmtRaw(raw,sfx);
@@ -428,7 +423,6 @@ function render() {
       <td class="td-score">${scoreCell(sc.quality)}</td>
       <td class="td-score">${scoreCell(sc.capital)}</td>
       <td class="td-score">${scoreCell(sc.expect)}</td>
-      <td class="td-rs">${fmtRS(s.rs)}</td>
       <td class="td-dq">${dqBadge(s.data_quality)}</td>
       <td class="td-arr"><span class="arr-icon">▶</span></td>`;
     tr.addEventListener('click',()=>toggle(s.ticker));
@@ -437,7 +431,7 @@ function render() {
     dr.className='detail-row'+(isExp?' open':'');
     dr.dataset.ticker=s.ticker;
     const dc=document.createElement('td');
-    dc.className='detail-cell';dc.colSpan=15;
+    dc.className='detail-cell';dc.colSpan=14;
     if(isExp) dc.innerHTML=detailHtml(s);
     dr.appendChild(dc);tbody.appendChild(dr);
   });
