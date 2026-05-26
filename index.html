@@ -539,7 +539,7 @@ function deleteTicker(tick) {
 function setMsg(msg) {
   const el=document.getElementById('modal-msg');
   el.textContent=msg;
-  setTimeout(()=>{el.textContent=';},3000);
+  setTimeout(()=>{el.textContent='';},3000);
 }
 
 document.getElementById('js-date').textContent=UPDATED_AT;
