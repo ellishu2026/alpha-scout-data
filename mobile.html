@@ -109,7 +109,8 @@ body {
 .pill.active {
   background: var(--ink); border-color: var(--ink); color: #fff;
 }
-.pill-wl.active { background: var(--blue); border-color: var(--blue); }
+.pill-wl { }
+.pill-wl.active { background: var(--blue); border-color: var(--blue); color: #fff; }
 
 /* ── Dropped banner ── */
 .dropped-bar {
@@ -133,8 +134,7 @@ body {
 .wl-section { padding: 4px 16px 0; }
 .wl-label { font-size: 11px; color: var(--ink4); text-transform: uppercase;
             letter-spacing: .08em; margin-bottom: 6px; }
-.wl-chips { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
-.wl-chips::-webkit-scrollbar { display: none; }
+.wl-chips { display: flex; gap: 6px; flex-wrap: wrap; padding-bottom: 4px; }
 .wl-chip {
   flex-shrink: 0;
   display: flex; align-items: center; gap: 6px;
@@ -189,17 +189,17 @@ body {
 .score-big { font-size: 22px; font-weight: 700; line-height: 1; font-family: var(--font-mono); }
 .score-label { font-size: 10px; color: var(--ink3); margin-top: 2px; }
 .card-dims {
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  gap: 4px; margin-top: 8px;
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 4px 8px; margin-top: 8px;
   padding-top: 8px;
   border-top: 1px solid var(--rule);
 }
-.dim-item { text-align: center; }
-.dim-val { font-size: 13px; font-weight: 600; font-family: var(--font-mono); }
-.dim-label { font-size: 9px; color: var(--ink3); margin-top: 1px; }
+.dim-item { display: flex; align-items: center; gap: 6px; }
+.dim-val { font-size: 13px; font-weight: 600; font-family: var(--font-mono); min-width: 36px; }
+.dim-label { font-size: 11px; color: var(--ink3); margin-top: 0; flex: 1; }
 .dim-bar {
-  height: 2px; border-radius: 1px;
-  background: var(--rule); margin-top: 3px; overflow: hidden;
+  height: 3px; border-radius: 1px;
+  background: var(--rule); flex: 1; overflow: hidden; margin-top: 0;
 }
 .dim-fill { height: 100%; border-radius: 1px; width: 0; transition: width .6s ease; }
 .card-extra {
@@ -623,8 +623,8 @@ function makeDim(abbr,v,label){
   var pct=v!=null?Math.min(100,Math.max(0,+v)):0;
   return '<div class="dim-item">'+
     '<div class="dim-val" style="color:'+clr(v)+'">'+fmtScore(v)+'</div>'+
-    '<div class="dim-label">'+label+'</div>'+
     '<div class="dim-bar"><div class="dim-fill" data-pct="'+pct+'" style="background:'+barClr(v)+'"></div></div>'+
+    '<div class="dim-label">'+label+'</div>'+
   '</div>';
 }
 
@@ -875,10 +875,14 @@ function switchTab(tab){
   if(tab==='ranking'){
     activeSector='ALL';
     document.querySelectorAll('.pill').forEach(function(p){
-      p.classList.toggle('active',p.dataset.s==='ALL');
+      p.classList.toggle('active',p.dataset.s==='ALL'||false);
     });
+    var pw=document.getElementById('pill-wl');
+    if(pw)pw.classList.remove('active');
   }else if(tab==='watchlist'){
     document.querySelectorAll('.pill').forEach(function(p){p.classList.remove('active');});
+    var pw=document.getElementById('pill-wl');
+    if(pw)pw.classList.add('active');
   }
   render();
 }
