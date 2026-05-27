@@ -76,6 +76,8 @@ body {
   padding-top: var(--header-h);
   padding-bottom: calc(var(--nav-h) + 8px);
   min-height: 100vh;
+  max-width: 680px;
+  margin: 0 auto;
 }
 
 /* ── Filter pills ── */
@@ -149,11 +151,11 @@ body {
           border-radius: 20px; padding: 3px 10px; cursor: pointer; }
 
 /* ── Stock cards ── */
-.cards { padding: 8px 16px 0; display: flex; flex-direction: column; gap: 8px; }
+.cards { padding: 6px 12px 0; display: flex; flex-direction: column; gap: 6px; }
 .stock-card {
   background: var(--card);
   border-radius: var(--radius);
-  padding: 14px;
+  padding: 10px 12px;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   transition: transform .1s;
@@ -163,7 +165,7 @@ body {
 .card-top { display: flex; align-items: flex-start; gap: 10px; }
 .card-rank { font-size: 12px; color: var(--ink4); min-width: 20px; margin-top: 2px; }
 .card-info { flex: 1; min-width: 0; }
-.card-ticker { font-size: 16px; font-weight: 700; color: var(--ink); }
+.card-ticker { font-size: 15px; font-weight: 700; color: var(--ink); }
 .card-name { font-size: 12px; color: var(--ink3); margin-top: 1px;
              white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .card-badges { display: flex; gap: 4px; margin-top: 4px; align-items: center; flex-wrap: wrap; }
@@ -184,26 +186,26 @@ body {
 .dq-m { color:#b45309; background:#fffbeb; }
 .dq-l { color:#b91c1c; background:#fef2f2; }
 .card-score { text-align: right; }
-.score-big { font-size: 26px; font-weight: 700; line-height: 1; font-family: var(--font-mono); }
+.score-big { font-size: 22px; font-weight: 700; line-height: 1; font-family: var(--font-mono); }
 .score-label { font-size: 10px; color: var(--ink3); margin-top: 2px; }
 .card-dims {
   display: grid; grid-template-columns: repeat(4, 1fr);
-  gap: 8px; margin-top: 12px;
-  padding-top: 10px;
+  gap: 4px; margin-top: 8px;
+  padding-top: 8px;
   border-top: 1px solid var(--rule);
 }
 .dim-item { text-align: center; }
-.dim-val { font-size: 14px; font-weight: 600; font-family: var(--font-mono); }
-.dim-label { font-size: 10px; color: var(--ink3); margin-top: 2px; }
+.dim-val { font-size: 13px; font-weight: 600; font-family: var(--font-mono); }
+.dim-label { font-size: 9px; color: var(--ink3); margin-top: 1px; }
 .dim-bar {
   height: 2px; border-radius: 1px;
   background: var(--rule); margin-top: 3px; overflow: hidden;
 }
 .dim-fill { height: 100%; border-radius: 1px; width: 0; transition: width .6s ease; }
 .card-extra {
-  display: flex; gap: 12px; margin-top: 10px;
-  padding-top: 8px; border-top: 1px solid var(--rule);
-  font-size: 12px;
+  display: flex; gap: 10px; margin-top: 6px;
+  padding-top: 6px; border-top: 1px solid var(--rule);
+  font-size: 11px;
 }
 .extra-item { display: flex; flex-direction: column; gap: 2px; }
 .extra-label { color: var(--ink3); font-size: 10px; }
