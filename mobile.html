@@ -109,8 +109,7 @@ body {
 .pill.active {
   background: var(--ink); border-color: var(--ink); color: #fff;
 }
-.pill-wl { }
-.pill-wl.active { background: var(--blue); border-color: var(--blue); color: #fff; }
+.pill-wl.active { background: var(--ink); border-color: var(--ink); color: #fff; }
 
 /* ── Dropped banner ── */
 .dropped-bar {
@@ -189,27 +188,36 @@ body {
 .score-big { font-size: 22px; font-weight: 700; line-height: 1; font-family: var(--font-mono); }
 .score-label { font-size: 10px; color: var(--ink3); margin-top: 2px; }
 .card-dims {
-  display: grid; grid-template-columns: repeat(2, 1fr);
-  gap: 4px 8px; margin-top: 8px;
-  padding-top: 8px;
+  display: flex; gap: 0;
+  margin-top: 8px; padding-top: 8px;
   border-top: 1px solid var(--rule);
 }
-.dim-item { display: flex; align-items: center; gap: 6px; }
-.dim-val { font-size: 13px; font-weight: 600; font-family: var(--font-mono); min-width: 36px; }
-.dim-label { font-size: 11px; color: var(--ink3); margin-top: 0; flex: 1; }
-.dim-bar {
-  height: 3px; border-radius: 1px;
-  background: var(--rule); flex: 1; overflow: hidden; margin-top: 0;
+.dim-item {
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; gap: 2px;
+  padding: 0 2px;
 }
-.dim-fill { height: 100%; border-radius: 1px; width: 0; transition: width .6s ease; }
+.dim-item:not(:last-child) { border-right: 1px solid var(--rule); }
+.dim-val { font-size: 13px; font-weight: 700; font-family: var(--font-mono); }
+.dim-label { font-size: 9px; color: var(--ink3); }
+.dim-bar {
+  width: 80%; height: 3px; border-radius: 2px;
+  background: var(--rule); overflow: hidden;
+}
+.dim-fill { height: 100%; border-radius: 2px; width: 0; transition: width .6s ease; }
 .card-extra {
-  display: flex; gap: 10px; margin-top: 6px;
-  padding-top: 6px; border-top: 1px solid var(--rule);
+  display: flex; gap: 0;
+  margin-top: 6px; padding-top: 6px;
+  border-top: 1px solid var(--rule);
   font-size: 11px;
 }
-.extra-item { display: flex; flex-direction: column; gap: 2px; }
-.extra-label { color: var(--ink3); font-size: 10px; }
-.extra-val { color: var(--ink); font-weight: 500; }
+.extra-item {
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; gap: 1px;
+}
+.extra-item:not(:last-child) { border-right: 1px solid var(--rule); }
+.extra-label { color: var(--ink3); font-size: 9px; text-transform: uppercase; }
+.extra-val { color: var(--ink); font-weight: 600; font-size: 12px; }
 .extra-val.pos { color: var(--c90); } .extra-val.neg { color: var(--c60); }
 
 /* ── 详情抽屉 ── */
