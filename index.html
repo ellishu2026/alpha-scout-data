@@ -366,8 +366,8 @@ function fmtFCF(s){
 }
 function fmtFlowVal(v){
   if(v==null)return'—';
-  var s=v>0?'+':'',a=Math.abs(v);
-  return a>=1000?s+'$'+(v/1000).toFixed(1)+'b':s+'$'+a.toFixed(0)+'m';
+  var s=v>0?'+':v<0?'-':'',a=Math.abs(v);
+  return a>=1000?s+'$'+(a/1000).toFixed(1)+'b':s+'$'+a.toFixed(0)+'m';
 }
 function flowClr(v){return v==null?'var(--ink4)':v>0?'var(--c90)':'var(--c60)';}
 function fmtEstFlow(flow){
