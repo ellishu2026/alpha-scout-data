@@ -873,15 +873,21 @@ function saveFlowCache(){try{localStorage.setItem(FLOW_LS_KEY,JSON.stringify({da
 async function fetchFlow(ticker){
   if(flowCache[ticker]!==undefined)return flowCache[ticker];
   try{
-    var end=Math.floor(Date.now()/1000),start=end-25*86400;
-    var r=await fetch('https://finnhub.io/api/v1/stock/candle?symbol='+ticker+'&resolution=D&from='+start+'&to='+end+'&token='+FINNHUB_KEY);
+    var now=Math.floor(Date.now()/1000);
+    var end=now+86400;
+    var start=now-30*86400;
+    var url='https://finnhub.io/api/v1/stock/candle?symbol='+ticker+'&resolution=D&from='+start+'&to='+end+'&token='+FINNHUB_KEY;
+    var r=await fetch(url);
+    if(!r.ok){flowCache[ticker]=null;saveFlowCache();return null;}
     var data=await r.json();
-    if(data.s!=='ok'||!data.c||data.c.length<3){flowCache[ticker]=null;saveFlowCache();return null;}
+    if(!data||data.s!=='ok'||!data.c||data.c.length<3){flowCache[ticker]=null;saveFlowCache();return null;}
+    var n=data.c.length;
     var flow3d=0,flow3w=0;
-    for(var i=0;i<Math.min(data.c.length,15);i++){
+    for(var i=n-1;i>=Math.max(0,n-15);i--){
       var rng=data.h[i]-data.l[i];
       var daily=rng>0.001?data.v[i]*data.c[i]*(data.c[i]-data.o[i])/rng:0;
-      if(i<3)flow3d+=daily;flow3w+=daily;
+      if(i>=n-3)flow3d+=daily;
+      flow3w+=daily;
     }
     var result={d3:Math.round(flow3d/1e6*10)/10,w3:Math.round(flow3w/1e6*10)/10};
     flowCache[ticker]=result;saveFlowCache();return result;
@@ -890,7 +896,7 @@ async function fetchFlow(ticker){
 function fmtFlow(v){if(v==null)return'—';var s=v>0?'+':'';var a=Math.abs(v);return a>=1000?s+'$'+(v/1000).toFixed(1)+'b':s+'$'+a.toFixed(0)+'m';}
 function flowClr(v){return v==null?'var(--ink3)':v>0?'var(--c90)':'var(--c60)';}
 function mobileFlowHtml(f){
-  if(!f)return'<span style="font-size:10px;color:var(--ink4)">—</span>';
+  if(!f)return'<span style="font-size:10px;color:var(--ink4)">Est.Flow —</span>';
   return '<span style="font-size:10px;color:var(--ink4)">Est.Flow </span>'+
     '<span style="font-size:11px;font-weight:500;color:'+flowClr(f.d3)+'">3D '+fmtFlow(f.d3)+'</span>'+
     '<span style="color:var(--ink4);font-size:10px;margin:0 3px">·</span>'+
