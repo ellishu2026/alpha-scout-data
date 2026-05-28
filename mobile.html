@@ -595,11 +595,13 @@ function render(){
         '<div class="card-rank">'+(ov!=null?i+1:'—')+'</div>'+
         '<div class="card-info">'+
           '<div class="card-ticker">'+(isWL?'<span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--blue);margin-right:5px;vertical-align:middle;margin-bottom:2px"></span>':'')+s.ticker+'</div>'+
-          '<div class="card-name">'+(s.name||'').substring(0,30)+'</div>'+
+          '<div class="card-name">'+(s.name||'').substring(0,28)+'</div>'+
           '<div class="card-badges">'+
             '<span class="sbadge sb-'+sec+'">'+sec+'</span>'+
             chgHtml(s.rank_change||'')+
             dqHtml(s.data_quality)+
+            '<span style="font-size:11px;color:var(--ink3);margin-left:4px">'+fmtMcap(s.market_cap)+'</span>'+
+            (fcfStr!=='—'?'<span style="font-size:11px;color:var(--ink3);margin-left:4px">FCF '+fcfStr+'</span>':'')+
           '</div>'+
         '</div>'+
         '<div class="card-score">'+
@@ -612,11 +614,6 @@ function render(){
         makeDim('Q',sc.quality,'质量')+
         makeDim('C',sc.capital,'资本')+
         makeDim('E',sc.expect,'预期')+
-      '</div>'+
-      '<div class="card-extra">'+
-        '<div class="extra-item"><span class="extra-label">市值</span><span class="extra-val">'+fmtMcap(s.market_cap)+'</span></div>'+
-        '<div class="extra-item"><span class="extra-label">FCF TTM</span><span class="extra-val">'+fcfStr+'</span></div>'+
-        '<div class="extra-item"><span class="extra-label">RS 3m</span><span class="extra-val '+rs3Cls+'">'+rs3Str+'</span></div>'+
       '</div>';
     card.addEventListener('click',function(){openDrawer(s.ticker);});
     container.appendChild(card);
@@ -913,6 +910,12 @@ function buildFilters(){
     btn.className='pill';btn.dataset.s=s;btn.textContent=s;
     btn.onclick=function(){setFilter(s);};row.appendChild(btn);
   });
+  // 加"自选股"按钮，和板块 pill 同排
+  var wlBtn=document.createElement('button');
+  wlBtn.className='pill pill-wl';wlBtn.id='pill-wl';
+  wlBtn.dataset.tab='watchlist';wlBtn.textContent='自选股';
+  wlBtn.onclick=function(){switchTab('watchlist');};
+  row.appendChild(wlBtn);
 }
 
 // ── dropped ──
