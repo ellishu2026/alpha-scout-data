@@ -253,10 +253,10 @@ footer{border-top:1px solid var(--rule);padding:12px 32px;font-size:10px;color:v
   <th class="r">#</th>
   <th>变化</th>
   <th>代码</th>
-  <th>公司名称</th>
   <th>板块</th>
   <th class="r">总市值</th>
   <th class="r">FCF (TTM)</th>
+  <th style="padding:9px 10px 8px;font-size:9.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink3);font-weight:400;white-space:nowrap;border-bottom:1px solid var(--rule)">Est. Flow</th>
   <th class="r clickable" onclick="openExplain('overall')">综合分 &#8595;</th>
   <th class="r clickable" onclick="openExplain('accel')">加速度(40%)</th>
   <th class="r clickable" onclick="openExplain('quality')">质量(25%)</th>
@@ -421,7 +421,6 @@ function render(){
       '<td class="td-rank">'+(sc.overall!=null?i+1:'—')+'</td>'+
       '<td class="td-chg">'+chgCell(s.rank_change||'—')+'</td>'+
       '<td class="td-ticker">'+(isWL?'<span class="wl-mark"></span>':'')+'<span>'+s.ticker+'</span></td>'+
-      '<td class="td-name" title="'+(s.name||'')+'">'+(s.name||'').substring(0,24)+'</td>'+
       '<td><span class="sbadge sb-'+sec+'">'+sec+'</span></td>'+
       '<td class="td-mcap">'+fmtMcap(s.market_cap)+'</td>'+
       '<td class="td-fcf">'+fmtFCF(s)+'</td>'+
