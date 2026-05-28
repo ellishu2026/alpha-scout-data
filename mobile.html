@@ -184,7 +184,7 @@ body {
 .dq-h { color:#15803d; background:#f0fdf4; }
 .dq-m { color:#b45309; background:#fffbeb; }
 .dq-l { color:#b91c1c; background:#fef2f2; }
-.card-score { text-align: right; }
+.card-score { text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
 .score-big { font-size: 22px; font-weight: 700; line-height: 1; font-family: var(--font-mono); }
 .score-label { font-size: 10px; color: var(--ink3); margin-top: 2px; }
 .card-dims {
@@ -599,17 +599,19 @@ function render(){
       '<div class="card-top">'+
         '<div class="card-rank">'+(ov!=null?i+1:'—')+'</div>'+
         '<div class="card-info">'+
-          '<div class="card-ticker">'+(isWL?'<span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--blue);margin-right:5px;vertical-align:middle;margin-bottom:2px"></span>':'')+s.ticker+'</div>'+
+          '<div class="card-ticker">'+(isWL?'<span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--blue);margin-right:5px;vertical-align:middle;margin-bottom:2px"></span>':'')+s.ticker+
+            '<span style="font-size:11px;font-weight:400;color:var(--ink3);margin-left:6px">'+fmtMcap(s.market_cap)+'</span>'+
+            chgHtml(s.rank_change||'')+
+          '</div>'+
           '<div class="card-name">'+(s.name||'').substring(0,28)+'</div>'+
           '<div class="card-badges">'+
             '<span class="sbadge sb-'+sec+'">'+sec+'</span>'+
-            chgHtml(s.rank_change||'')+
-            dqHtml(s.data_quality)+
-            '<span style="font-size:11px;color:var(--ink3);margin-left:4px">'+fmtMcap(s.market_cap)+'</span>'+
-            (fcfStr!=='—'?'<span style="font-size:11px;color:var(--ink3);margin-left:4px">FCF '+fcfStr+'<span style="color:'+(qoq!=null?(qoq>0?'var(--c90)':'var(--c60)'):'var(--ink3)')+'">'+fcfQoqStr+'</span></span>':'')+
+            (fcfStr!=='—'?'<span style="font-size:11px;color:var(--ink3);margin-left:4px">FCF '+fcfStr+
+              '<span style="color:'+(qoq!=null?(qoq>0?'var(--c90)':'var(--c60)'):'var(--ink3)')+'">'+fcfQoqStr+'</span></span>':'')+
           '</div>'+
         '</div>'+
         '<div class="card-score">'+
+          dqHtml(s.data_quality)+
           '<div class="score-big" style="color:'+clr(ov)+'">'+fmtScore(ov)+'</div>'+
           '<div class="score-label">综合分</div>'+
         '</div>'+
