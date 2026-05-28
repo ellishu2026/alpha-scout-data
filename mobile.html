@@ -603,7 +603,6 @@ function render(){
             '<span style="font-size:11px;font-weight:400;color:var(--ink3);margin-left:6px">'+fmtMcap(s.market_cap)+'</span>'+
             chgHtml(s.rank_change||'')+
           '</div>'+
-          '<div class="card-name">'+(s.name||'').substring(0,28)+'</div>'+
           '<div class="card-badges">'+
             '<span class="sbadge sb-'+sec+'">'+sec+'</span>'+
             (fcfStr!=='—'?'<span style="font-size:11px;color:var(--ink3);margin-left:4px">FCF '+fcfStr+
@@ -891,7 +890,7 @@ async function fetchFlow(ticker){
 function fmtFlow(v){if(v==null)return'—';var s=v>0?'+':'';var a=Math.abs(v);return a>=1000?s+'$'+(v/1000).toFixed(1)+'b':s+'$'+a.toFixed(0)+'m';}
 function flowClr(v){return v==null?'var(--ink3)':v>0?'var(--c90)':'var(--c60)';}
 function mobileFlowHtml(f){
-  if(!f)return'';
+  if(!f)return'<span style="font-size:10px;color:var(--ink4)">—</span>';
   return '<span style="font-size:10px;color:var(--ink4)">Est.Flow </span>'+
     '<span style="font-size:11px;font-weight:500;color:'+flowClr(f.d3)+'">3D '+fmtFlow(f.d3)+'</span>'+
     '<span style="color:var(--ink4);font-size:10px;margin:0 3px">·</span>'+
