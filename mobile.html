@@ -608,6 +608,7 @@ function render(){
             '<span class="sbadge sb-'+sec+'">'+sec+'</span>'+
             (fcfStr!=='—'?'<span style="font-size:11px;color:var(--ink3);margin-left:4px">FCF '+fcfStr+
               '<span style="color:'+(qoq!=null?(qoq>0?'var(--c90)':'var(--c60)'):'var(--ink3)')+'">'+fcfQoqStr+'</span></span>':'')+
+            '<span style="font-size:11px;color:var(--ink4);margin-left:6px" data-flow="'+s.ticker+'">...</span>'+
           '</div>'+
         '</div>'+
         '<div class="card-score">'+
@@ -629,6 +630,8 @@ function render(){
   setTimeout(function(){
     document.querySelectorAll('.dim-fill').forEach(function(el){el.style.width=el.dataset.pct+'%';});
   },50);
+  var visibleTickers=list.map(function(s){return s.ticker;});
+  setTimeout(function(){loadFlowForTickers(visibleTickers);},150);
 }
 
 function makeDim(abbr,v,label){
@@ -861,6 +864,52 @@ async function fetchAndScore(tick){
 }
 
 // ── 自选股横条 ──
+
+const FLOW_LS_KEY='alphascout_flow_v1';
+let flowCache=(function(){
+  try{var s=localStorage.getItem(FLOW_LS_KEY);if(s){var d=JSON.parse(s);if(d.date===new Date().toDateString())return d.flows;}}catch(e){}
+  return{};
+})();
+function saveFlowCache(){try{localStorage.setItem(FLOW_LS_KEY,JSON.stringify({date:new Date().toDateString(),flows:flowCache}));}catch(e){}}
+async function fetchFlow(ticker){
+  if(flowCache[ticker]!==undefined)return flowCache[ticker];
+  try{
+    var end=Math.floor(Date.now()/1000),start=end-25*86400;
+    var r=await fetch('https://finnhub.io/api/v1/stock/candle?symbol='+ticker+'&resolution=D&from='+start+'&to='+end+'&token='+FINNHUB_KEY);
+    var data=await r.json();
+    if(data.s!=='ok'||!data.c||data.c.length<3){flowCache[ticker]=null;saveFlowCache();return null;}
+    var flow3d=0,flow3w=0;
+    for(var i=0;i<Math.min(data.c.length,15);i++){
+      var rng=data.h[i]-data.l[i];
+      var daily=rng>0.001?data.v[i]*data.c[i]*(data.c[i]-data.o[i])/rng:0;
+      if(i<3)flow3d+=daily;flow3w+=daily;
+    }
+    var result={d3:Math.round(flow3d/1e6*10)/10,w3:Math.round(flow3w/1e6*10)/10};
+    flowCache[ticker]=result;saveFlowCache();return result;
+  }catch(e){flowCache[ticker]=null;saveFlowCache();return null;}
+}
+function fmtFlow(v){if(v==null)return'—';var s=v>0?'+':'';var a=Math.abs(v);return a>=1000?s+'$'+(v/1000).toFixed(1)+'b':s+'$'+a.toFixed(0)+'m';}
+function flowClr(v){return v==null?'var(--ink3)':v>0?'var(--c90)':'var(--c60)';}
+function mobileFlowHtml(f){
+  if(!f)return'';
+  return '<span style="font-size:10px;color:var(--ink4)">Est.Flow </span>'+
+    '<span style="font-size:11px;font-weight:500;color:'+flowClr(f.d3)+'">3D '+fmtFlow(f.d3)+'</span>'+
+    '<span style="color:var(--ink4);font-size:10px;margin:0 3px">·</span>'+
+    '<span style="font-size:11px;font-weight:500;color:'+flowClr(f.w3)+'">3W '+fmtFlow(f.w3)+'</span>';
+}
+function updateFlowEl(ticker,f){
+  document.querySelectorAll('[data-flow="'+ticker+'"]').forEach(function(el){
+    el.innerHTML=mobileFlowHtml(f);
+  });
+}
+async function loadFlowForTickers(tickers){
+  for(var i=0;i<tickers.length;i++){
+    var tick=tickers[i];
+    if(flowCache[tick]!==undefined){updateFlowEl(tick,flowCache[tick]);continue;}
+    var f=await fetchFlow(tick);updateFlowEl(tick,f);
+    if(i<tickers.length-1)await new Promise(function(r){setTimeout(r,220);});
+  }
+}
 function buildWLBar(){
   var wl=wlTickers.map(function(t){return scoreMap[t]||{ticker:t,scores:{overall:null}};});
   if(!wl.length)return;
