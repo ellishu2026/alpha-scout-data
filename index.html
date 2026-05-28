@@ -69,7 +69,7 @@ header{border-bottom:2px solid var(--ink);padding:18px 32px 14px;
 .table-wrap{overflow-x:auto}
 table{width:100%;border-collapse:collapse;min-width:860px}
 thead th{font-size:9.5px;text-transform:uppercase;letter-spacing:.08em;
-         color:var(--ink3);font-weight:400;padding:9px 10px 8px;
+         color:var(--ink3);font-weight:400;padding:8px 8px 7px;
          border-bottom:1px solid var(--rule);text-align:left;white-space:nowrap;
          background:var(--white);position:sticky;top:0;z-index:2}
 thead th.r{text-align:right}
@@ -82,7 +82,7 @@ tbody tr.stock-row:nth-child(4n+2){background:var(--row-alt)}
 tbody tr.stock-row:hover{background:var(--row-hover)!important}
 tbody tr.stock-row.is-wl{border-left:2px solid var(--c80)}
 tbody tr.stock-row.expanded{background:var(--row-exp)!important}
-td{padding:7px 10px;vertical-align:middle;white-space:nowrap}
+td{padding:6px 8px;vertical-align:middle;white-space:nowrap}
 .td-rank{color:var(--ink4);font-size:11px;width:28px;text-align:right;padding-right:4px}
 .td-chg{width:36px;text-align:center;font-size:10px;font-weight:500}
 .chg-new{color:var(--c90)}.chg-up{color:var(--c80)}.chg-dn{color:var(--c60)}.chg-flat{color:var(--ink4)}
@@ -100,15 +100,15 @@ td{padding:7px 10px;vertical-align:middle;white-space:nowrap}
 .sb-其他{background:#f9fafb;color:#6b7280}
 .td-mcap{text-align:right;font-size:11.5px;color:var(--ink2);padding-right:10px}
 .td-fcf{text-align:right;padding-right:10px}
-.td-flow{padding:6px 10px;min-width:180px}
+.td-flow{padding:6px 12px;min-width:160px;border-left:1px solid var(--rule2)}
 .fcf-wrap{display:inline-flex;flex-direction:column;align-items:flex-end;line-height:1.3}
 .fcf-abs{font-size:11.5px;color:var(--ink)}
 .fcf-yoy{font-size:10px}
 .fcf-yoy.pos{color:var(--c90)}.fcf-yoy.neg{color:var(--c60)}.fcf-yoy.na{color:var(--ink4)}
-.td-score{text-align:right;padding-right:10px}
+.td-score{text-align:right;padding-right:8px;padding-left:8px}
 .sw{display:inline-flex;align-items:center;gap:5px;justify-content:flex-end}
-.sval{font-size:12.5px;font-weight:500;min-width:32px;text-align:right;letter-spacing:-.2px}
-.sbar{width:32px;height:2px;background:var(--rule);border-radius:1px;overflow:hidden;flex-shrink:0}
+.sval{font-size:12px;font-weight:500;min-width:28px;text-align:right;letter-spacing:-.2px}
+.sbar{width:24px;height:2px;background:var(--rule);border-radius:1px;overflow:hidden;flex-shrink:0}
 .sbar-fill{height:100%;border-radius:1px;width:0;transition:width .7s cubic-bezier(.16,1,.3,1)}
 .c90{color:var(--c90)}.c90 .sbar-fill{background:var(--bar-90)}
 .c80{color:var(--c80)}.c80 .sbar-fill{background:var(--bar-80)}
@@ -257,7 +257,7 @@ footer{border-top:1px solid var(--rule);padding:12px 32px;font-size:10px;color:v
   <th class="r">总市值</th>
   <th class="r">FCF (TTM)</th>
   <th style="padding:9px 10px 8px;font-size:9.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink3);font-weight:400;white-space:nowrap;border-bottom:1px solid var(--rule)">Est. Flow</th>
-  <th class="r clickable" onclick="openExplain('overall')">综合分 &#8595;</th>
+  <th class="r clickable" onclick="openExplain('overall')" style="border-left:1px solid var(--rule2)">综合分 &#8595;</th>
   <th class="r clickable" onclick="openExplain('accel')">加速度(40%)</th>
   <th class="r clickable" onclick="openExplain('quality')">质量(25%)</th>
   <th class="r clickable" onclick="openExplain('capital')">资本行动(25%)</th>
@@ -425,7 +425,7 @@ function render(){
       '<td class="td-mcap">'+fmtMcap(s.market_cap)+'</td>'+
       '<td class="td-fcf">'+fmtFCF(s)+'</td>'+
       '<td class="td-flow" data-flow="'+s.ticker+'"><span style="color:var(--ink4);font-size:11px">...</span></td>'+
-      '<td class="td-score">'+scoreCell(sc.overall)+'</td>'+
+      '<td class="td-score" style="border-left:1px solid var(--rule2)">'+scoreCell(sc.overall)+'</td>'+
       '<td class="td-score">'+scoreCell(sc.accel)+'</td>'+
       '<td class="td-score">'+scoreCell(sc.quality)+'</td>'+
       '<td class="td-score">'+scoreCell(sc.capital)+'</td>'+
@@ -746,15 +746,21 @@ function saveFlowCache(){try{localStorage.setItem(FLOW_LS_KEY,JSON.stringify({da
 async function fetchFlow(ticker){
   if(flowCache[ticker]!==undefined)return flowCache[ticker];
   try{
-    var end=Math.floor(Date.now()/1000),start=end-25*86400;
-    var r=await fetch('https://finnhub.io/api/v1/stock/candle?symbol='+ticker+'&resolution=D&from='+start+'&to='+end+'&token='+FINNHUB_KEY);
+    var now=Math.floor(Date.now()/1000);
+    var end=now+86400;
+    var start=now-30*86400;
+    var url='https://finnhub.io/api/v1/stock/candle?symbol='+ticker+'&resolution=D&from='+start+'&to='+end+'&token='+FINNHUB_KEY;
+    var r=await fetch(url);
+    if(!r.ok){flowCache[ticker]=null;saveFlowCache();return null;}
     var data=await r.json();
-    if(data.s!=='ok'||!data.c||data.c.length<3){flowCache[ticker]=null;saveFlowCache();return null;}
+    if(!data||data.s!=='ok'||!data.c||data.c.length<3){flowCache[ticker]=null;saveFlowCache();return null;}
+    var n=data.c.length;
     var flow3d=0,flow3w=0;
-    for(var i=0;i<Math.min(data.c.length,15);i++){
+    for(var i=n-1;i>=Math.max(0,n-15);i--){
       var rng=data.h[i]-data.l[i];
       var daily=rng>0.001?data.v[i]*data.c[i]*(data.c[i]-data.o[i])/rng:0;
-      if(i<3)flow3d+=daily;flow3w+=daily;
+      if(i>=n-3)flow3d+=daily;
+      flow3w+=daily;
     }
     var result={d3:Math.round(flow3d/1e6*10)/10,w3:Math.round(flow3w/1e6*10)/10};
     flowCache[ticker]=result;saveFlowCache();return result;
