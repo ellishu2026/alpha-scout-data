@@ -150,23 +150,23 @@ body {
           border-radius: 20px; padding: 3px 10px; cursor: pointer; }
 
 /* ── Stock cards ── */
-.cards { padding: 6px 12px 0; display: flex; flex-direction: column; gap: 5px; }
-.card-row { display: flex; align-items: center; gap: 0; overflow: hidden; }
-.cr-ticker { min-width: 56px; max-width: 56px; border-right: 1px solid var(--rule); padding-right: 6px; margin-right: 6px; flex-shrink: 0; }
-.cr-tick { font-size: 13px; font-weight: 600; color: var(--ink); line-height: 1.2; display: flex; align-items: center; gap: 3px; }
+.cards { padding: 6px 10px 0; display: flex; flex-direction: column; gap: 4px; }
+.card-row { display: flex; align-items: center; gap: 6px; overflow: hidden; min-height: 44px; }
+.cr-sep { width: 1px; height: 28px; background: var(--rule); flex-shrink: 0; }
+.cr-ticker { flex-shrink: 0; min-width: 48px; }
+.cr-tick { font-size: 13px; font-weight: 700; color: var(--ink); display: flex; align-items: center; gap: 3px; white-space: nowrap; }
 .wl-dot { display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: var(--blue); flex-shrink: 0; }
-.cr-mcap { font-size: 9px; color: var(--ink3); }
-.cr-fcf { min-width: 52px; max-width: 52px; border-right: 1px solid var(--rule); padding-right: 6px; margin-right: 6px; flex-shrink: 0; }
-.cr-flow { min-width: 72px; max-width: 72px; border-right: 1px solid var(--rule); padding-right: 6px; margin-right: 6px; flex-shrink: 0; }
-.cr-label { font-size: 8px; color: var(--ink4); text-transform: uppercase; letter-spacing: .04em; }
-.cr-val { font-size: 11px; font-weight: 600; line-height: 1.3; white-space: nowrap; }
-.cr-sub { font-size: 10px; line-height: 1.2; white-space: nowrap; }
-.cr-scores { margin-left: 6px; text-align: right; flex-shrink: 0; }
-.cr-ov { font-size: 15px; font-weight: 700; font-family: var(--font-mono); line-height: 1.1; }
-.cr-dims { display: flex; gap: 4px; justify-content: flex-end; margin-top: 1px; }
-.cr-dims span { font-size: 11px; font-weight: 500; font-family: var(--font-mono); }
-.cr-dim-labels { display: flex; gap: 4px; justify-content: flex-end; }
-.cr-dim-labels span { font-size: 8px; color: var(--ink4); min-width: 19px; text-align: center; }
+.cr-mcap { font-size: 9px; color: var(--ink3); white-space: nowrap; }
+.cr-fcf { flex-shrink: 0; }
+.cr-flow { flex-shrink: 0; }
+.cr-lbl { font-size: 8px; color: var(--ink4); letter-spacing: .04em; }
+.cr-v1 { font-size: 11px; font-weight: 600; white-space: nowrap; line-height: 1.4; }
+.cr-v2 { font-size: 10px; white-space: nowrap; line-height: 1.3; }
+.cr-scores { margin-left: auto; flex-shrink: 0; text-align: right; }
+.cr-dims { display: flex; gap: 5px; justify-content: flex-end; margin-top: 1px; }
+.cr-dims span { font-size: 10px; font-weight: 600; font-family: var(--font-mono); }
+.cr-dim-lbl { display: flex; gap: 5px; justify-content: flex-end; }
+.cr-dim-lbl span { font-size: 8px; color: var(--ink4); min-width: 20px; text-align: center; }
 .stock-card {
   background: var(--card);
   border-radius: var(--radius);
@@ -618,33 +618,26 @@ function render(){
 
     var card=document.createElement('div');
     card.className='stock-card';
+    var fcfLine = fcfStr!=='—' ? '<span style="color:'+(fcf<0?'var(--c60)':'var(--ink)')+'">'+fcfStr+'</span><span style="font-size:9px;color:'+(qoq!=null?(qoq>0?'var(--c90)':'var(--c60)'):'var(--ink3)')+';margin-left:2px">'+fcfQoqStr+'</span>' : '';
+    var flowLine = s.flow&&s.flow.flow_3d!=null ? '<span style="color:'+flowClr(s.flow.flow_3d)+'">3D '+fmtFlowVal(s.flow.flow_3d)+'</span><span style="color:var(--ink4);margin:0 2px">·</span><span style="color:'+flowClr(s.flow.flow_3w)+'">3W '+fmtFlowVal(s.flow.flow_3w)+'</span>' : '';
     card.innerHTML=
       '<div class="card-row">'+
         '<div class="cr-ticker">'+
           '<div class="cr-tick">'+(isWL?'<span class="wl-dot"></span>':'')+s.ticker+'</div>'+
           '<div class="cr-mcap">'+fmtMcap(s.market_cap)+'</div>'+
         '</div>'+
-        (fcfStr!=='—'?
-          '<div class="cr-fcf">'+
-            '<div class="cr-label">FCF</div>'+
-            '<div class="cr-val" style="color:'+(fcf<0?'var(--c60)':'var(--ink)')+'">'+fcfStr+'</div>'+
-            '<div class="cr-sub" style="color:'+(qoq!=null?(qoq>0?'var(--c90)':'var(--c60)'):'var(--ink3)')+'">'+fcfQoqStr+'</div>'+
-          '</div>':'')+
-        (s.flow&&s.flow.flow_3d!=null?
-          '<div class="cr-flow">'+
-            '<div class="cr-label">Est.Flow</div>'+
-            '<div class="cr-val" style="color:'+flowClr(s.flow.flow_3d)+'">3D '+fmtFlowVal(s.flow.flow_3d)+'</div>'+
-            '<div class="cr-sub" style="color:'+flowClr(s.flow.flow_3w)+'">3W '+fmtFlowVal(s.flow.flow_3w)+'</div>'+
-          '</div>':'')+
+        (fcfStr!=='—'?'<div class="cr-sep"></div><div class="cr-fcf"><div class="cr-lbl">FCF</div><div class="cr-v1">'+fcfLine+'</div></div>':'')+
+        (flowLine?'<div class="cr-sep"></div><div class="cr-flow"><div class="cr-lbl">Est.Flow</div><div class="cr-v1" style="font-size:10px">'+flowLine+'</div></div>':'')+
+        '<div class="cr-sep"></div>'+
         '<div class="cr-scores">'+
-          '<div class="cr-ov" style="color:'+clr(ov)+'">'+fmtScore(ov)+'</div>'+
           '<div class="cr-dims">'+
+            '<span style="color:'+clr(ov)+';font-size:14px;font-weight:700">'+fmtScore(ov)+'</span>'+
             '<span style="color:'+clr(sc.accel)+'">'+fmtScore(sc.accel)+'</span>'+
             '<span style="color:'+clr(sc.quality)+'">'+fmtScore(sc.quality)+'</span>'+
             '<span style="color:'+clr(sc.capital)+'">'+fmtScore(sc.capital)+'</span>'+
             '<span style="color:'+clr(sc.expect)+'">'+fmtScore(sc.expect)+'</span>'+
           '</div>'+
-          '<div class="cr-dim-labels"><span>加</span><span>质</span><span>资</span><span>预</span></div>'+
+          '<div class="cr-dim-lbl"><span>综</span><span>加</span><span>质</span><span>资</span><span>预</span></div>'+
         '</div>'+
       '</div>';
     card.addEventListener('click',function(){openDrawer(s.ticker);});
