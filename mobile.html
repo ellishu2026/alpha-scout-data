@@ -152,21 +152,23 @@ body {
 /* ── Stock cards ── */
 .cards { padding: 6px 10px 0; display: flex; flex-direction: column; gap: 4px; }
 .card-row { display: flex; align-items: center; gap: 6px; overflow: hidden; min-height: 44px; }
-.cr-sep { width: 1px; height: 28px; background: var(--rule); flex-shrink: 0; }
-.cr-ticker { flex-shrink: 0; min-width: 48px; }
+.cr-sep { width: 1px; height: 28px; background: var(--rule); flex-shrink: 0; margin: 0 8px; }
+.cr-ticker { width: 52px; flex-shrink: 0; }
 .cr-tick { font-size: 13px; font-weight: 700; color: var(--ink); display: flex; align-items: center; gap: 3px; white-space: nowrap; }
 .wl-dot { display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: var(--blue); flex-shrink: 0; }
 .cr-mcap { font-size: 9px; color: var(--ink3); white-space: nowrap; }
-.cr-fcf { flex-shrink: 0; }
-.cr-flow { flex-shrink: 0; }
+.cr-fcf { width: 88px; flex-shrink: 0; }
+.cr-flow { width: 210px; flex-shrink: 0; }
 .cr-lbl { font-size: 8px; color: var(--ink4); letter-spacing: .04em; }
 .cr-v1 { font-size: 11px; font-weight: 600; white-space: nowrap; line-height: 1.4; }
 .cr-v2 { font-size: 10px; white-space: nowrap; line-height: 1.3; }
-.cr-scores { margin-left: 0; flex-shrink: 0; text-align: right; }
-.cr-dims { display: flex; gap: 5px; justify-content: flex-end; margin-top: 1px; }
-.cr-dims span { font-size: 10px; font-weight: 600; font-family: var(--font-mono); }
-.cr-dim-lbl { display: flex; gap: 8px; justify-content: flex-end; }
-.cr-dim-lbl span { font-size: 8px; color: var(--ink4); min-width: 22px; text-align: center; }
+.cr-scores { flex-shrink: 0; }
+.cr-dims { display: flex; align-items: baseline; }
+.cr-dims span { font-size: 11px; font-weight: 600; font-family: var(--font-mono); width: 36px; text-align: right; }
+.cr-dims span.ov { font-size: 14px; font-weight: 700; width: 40px; }
+.cr-dim-lbl { display: flex; margin-top: 2px; }
+.cr-dim-lbl span { font-size: 8px; color: var(--ink4); width: 36px; text-align: right; }
+.cr-dim-lbl span.ov { width: 40px; }
 .stock-card {
   background: var(--card);
   border-radius: var(--radius);
@@ -631,13 +633,13 @@ function render(){
         '<div class="cr-sep"></div>'+
         '<div class="cr-scores">'+
           '<div class="cr-dims">'+
-            '<span style="color:'+clr(ov)+';font-size:14px;font-weight:700">'+fmtScore(ov)+'</span>'+
+            '<span class="ov" style="color:'+clr(ov)+'">'+fmtScore(ov)+'</span>'+
             '<span style="color:'+clr(sc.accel)+'">'+fmtScore(sc.accel)+'</span>'+
             '<span style="color:'+clr(sc.quality)+'">'+fmtScore(sc.quality)+'</span>'+
             '<span style="color:'+clr(sc.capital)+'">'+fmtScore(sc.capital)+'</span>'+
             '<span style="color:'+clr(sc.expect)+'">'+fmtScore(sc.expect)+'</span>'+
           '</div>'+
-          '<div class="cr-dim-lbl"><span>综</span><span>加</span><span>质</span><span>资</span><span>预</span></div>'+
+          '<div class="cr-dim-lbl"><span class="ov">综合</span><span>加速</span><span>质量</span><span>资本</span><span>预期</span></div>'+
         '</div>'+
       '</div>';
     card.addEventListener('click',function(){openDrawer(s.ticker);});
