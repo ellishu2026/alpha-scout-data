@@ -628,8 +628,8 @@ function render(){
           '<div class="cr-tick">'+(isWL?'<span class="wl-dot"></span>':'')+s.ticker+'</div>'+
           '<div class="cr-mcap">'+fmtMcap(s.market_cap)+'</div>'+
         '</div>'+
-        (fcfStr!=='—'?'<div class="cr-sep"></div><div class="cr-fcf"><div class="cr-lbl">FCF</div><div class="cr-v1">'+fcfLine+'</div></div>':'')+
-        (flowLine?'<div class="cr-sep"></div><div class="cr-flow"><div class="cr-lbl">Est.Flow</div><div class="cr-v1" style="font-size:10px">'+flowLine+'</div></div>':'')+
+        '<div class="cr-sep"></div><div class="cr-fcf"><div class="cr-lbl">FCF</div>'+(fcfStr!=='—'?'<div class="cr-v1">'+fcfLine+'</div>':'<div class="cr-v1">&nbsp;</div>')+'</div>'+
+        '<div class="cr-sep"></div><div class="cr-flow"><div class="cr-lbl">Est.Flow</div>'+(flowLine?'<div class="cr-v1" style="font-size:10px">'+flowLine+'</div>':'<div class="cr-v1">&nbsp;</div>')+'</div>'+
         '<div class="cr-sep"></div>'+
         '<div class="cr-scores">'+
           '<div class="cr-dims">'+
