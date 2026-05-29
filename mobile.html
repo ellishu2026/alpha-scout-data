@@ -497,8 +497,7 @@ const UNIV_SIZE=500;
 const VERSION="v2.0";
 const FINNHUB_KEY="d81tmqpr01qrojfd68b0d81tmqpr01qrojfd68bg";
 
-const LS_KEY='alphascout_wl_v3';
-const LS_SCORES_KEY='alphascout_wl_scores_v2';
+
 const EXPLAIN_PWD='Thermal@222';
 let explainUnlocked=false;
 let explainTarget=null;
@@ -506,17 +505,10 @@ let activeTab='ranking';
 let activeSector='ALL';
 let expandedTicker=null;
 
-let wlTickers=(function(){
-  try{var s=localStorage.getItem(LS_KEY);if(s)return JSON.parse(s);}catch(e){}
-  return WL_STOCKS.map(function(s){return s.ticker;});
-})();
+// wlTickers 永远以服务端 WL_STOCKS 为准，保证所有终端顺序一致
+let wlTickers=WL_STOCKS.map(function(s){return s.ticker;});
+// 评分数据全部来自服务端 WL_STOCKS，不依赖本地缓存
 let scoreMap=Object.fromEntries(WL_STOCKS.map(function(s){return[s.ticker,s];}));
-(function(){
-  try{
-    var saved=JSON.parse(localStorage.getItem(LS_SCORES_KEY)||'{}');
-    Object.assign(scoreMap,saved);
-  }catch(e){}
-})();
 
 function cls(v){
   if(v==null)return'cna';
@@ -807,12 +799,9 @@ function renderWLList(){
     list.appendChild(div);
   });
 }
-function saveWL(){localStorage.setItem(LS_KEY,JSON.stringify(wlTickers));}
-function saveWLScores(scores){localStorage.setItem(LS_SCORES_KEY,JSON.stringify(scores));}
-function loadWLScores(){try{var s=localStorage.getItem(LS_SCORES_KEY);if(s)return JSON.parse(s);}catch(e){}return{};}
 
 function deleteTicker(tick){
-  wlTickers=wlTickers.filter(function(t){return t!==tick;});saveWL();
+  wlTickers=wlTickers.filter(function(t){return t!==tick;});
   renderWLList();buildWLBar();render();setWLMsg('已删除 '+tick);
 }
 function addTicker(){
@@ -820,60 +809,17 @@ function addTicker(){
   var tick=(input.value||'').trim().toUpperCase();
   if(!tick)return;
   if(wlTickers.includes(tick)){setWLMsg(tick+' 已存在');return;}
-  wlTickers=[...wlTickers,tick];saveWL();input.value='';
+  wlTickers=[...wlTickers,tick];input.value='';
   renderWLList();buildWLBar();render();
-  fetchAndScore(tick);
 }
 function setWLMsg(msg){
   var el=document.getElementById('wl-msg');el.textContent=msg;
   setTimeout(function(){el.textContent='';},3000);
 }
 
-// ── 实时拉取评分 ──
-function scoreInd(v,full,pass_,floor){
-  if(v==null)return 50;
-  if(v>=full)return 100;if(v<=floor)return 0;
-  if(v>=pass_)return 50+50*(v-pass_)/(full-pass_);
-  return 50*(v-floor)/(pass_-floor);
-}
-async function fetchAndScore(tick){
-  setWLMsg('正在拉取 '+tick+' 数据…');
-  try{
-    var base='https://finnhub.io/api/v1';
-    var [mRes,eRes,rRes]=await Promise.all([
-      fetch(base+'/stock/metric?symbol='+tick+'&metric=all&token='+FINNHUB_KEY).then(function(r){return r.json();}),
-      fetch(base+'/stock/earnings?symbol='+tick+'&token='+FINNHUB_KEY).then(function(r){return r.json();}),
-      fetch(base+'/stock/recommendation?symbol='+tick+'&token='+FINNHUB_KEY).then(function(r){return r.json();}),
-    ]);
-    var m=mRes.metric||{};
-    var si=scoreInd;
-    var rev_accel=m.revenueGrowthQuarterlyYoy!=null&&m.revenueGrowthTTMYoy!=null?(m.revenueGrowthQuarterlyYoy-m.revenueGrowthTTMYoy)*100:null;
-    var eps_accel=m.epsGrowthQuarterlyYoy!=null&&m.epsGrowthTTMYoy!=null?(m.epsGrowthQuarterlyYoy-m.epsGrowthTTMYoy)*100:null;
-    var gm_exp=m.grossMarginTTM!=null&&m.grossMargin5Y!=null?m.grossMarginTTM-m.grossMargin5Y:null;
-    var gross_m=m.grossMarginTTM??null,op_m=m.operatingMarginTTM??null;
-    var surp=Array.isArray(eRes)&&eRes.length?eRes[0].surprisePercent??null:null;
-    var streak=Array.isArray(eRes)?eRes.filter(function(e){return e.surprisePercent>0;}).length:null;
-    var bull=(function(){if(!Array.isArray(rRes)||!rRes.length)return null;var r0=rRes[0];var tot=(r0.buy||0)+(r0.hold||0)+(r0.sell||0)+(r0.strongBuy||0)+(r0.strongSell||0);return tot>0?((r0.buy||0)+(r0.strongBuy||0))/tot*100:null;})();
-    var accel=si(rev_accel,15,3,-10)*0.15+si(eps_accel,30,5,-20)*0.15+si(gm_exp,5,1,-3)*0.15+50*0.30+50*0.15+50*0.10;
-    var quality=si(null,100,70,30)*0.40+si(gross_m,70,30,10)*0.30+si(op_m,30,10,0)*0.30;
-    var capital=50;
-    var expect=si(surp,15,3,-3)*0.40+si(streak,4,2,0)*0.30+si(bull,90,60,30)*0.30;
-    var overall=accel*0.40+quality*0.25+capital*0.25+expect*0.10;
-    var scores={overall:Math.round(overall*10)/10,accel:Math.round(accel*10)/10,quality:Math.round(quality*10)/10,capital:Math.round(capital*10)/10,expect:Math.round(expect*10)/10};
-    var mc=m.marketCapitalization?m.marketCapitalization*1e6:null;
-    var valid=[gross_m,op_m,surp,streak,bull,rev_accel].filter(function(v){return v!=null;}).length;
-    var dq=valid>=5?'high':valid>=3?'medium':'low';
-    var stockData={ticker:tick,name:'',sector:'',market_cap:mc,cn_sector:'其他',
-      scores:scores,indicators:{rev_accel_pp:rev_accel,eps_accel_pp:eps_accel,
-        gross_margin_expansion_pp:gm_exp,gross_margin_pct:gross_m,op_margin_pct:op_m,
-        earnings_surprise_pct:surp,surprise_streak:streak,estimate_revision_ratio_pct:bull,
-        fcf_ttm_m:m.freeCashFlowTTM??null},
-      rs:{},data_quality:dq,risk_flags:[]};
-    var saved=loadWLScores();saved[tick]=stockData;saveWLScores(saved);scoreMap[tick]=stockData;
-    setWLMsg(tick+' 评分: '+scores.overall.toFixed(1)+' ✓');
-    renderWLList();buildWLBar();render();
-  }catch(e){setWLMsg('拉取失败，请检查代码');console.error(e);}
-}
+// 评分来自服务端，无需实时拉取
+// fetchAndScore 已移除（评分来自服务端）
+
 
 // ── 自选股横条 ──
 

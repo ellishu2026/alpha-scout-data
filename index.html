@@ -319,18 +319,12 @@ const VERSION="v2.0";
 const FINNHUB_KEY="d81tmqpr01qrojfd68b0d81tmqpr01qrojfd68bg";
 
 const ALL_MAP=Object.fromEntries([...STOCKS,...WL_STOCKS].map(s=>[s.ticker,s]));
-const LS_KEY='alphascout_wl_v3';
 const EXPLAIN_PWD='Thermal@222';
 let explainUnlocked=false;
-let wlTickers=(()=>{try{const s=localStorage.getItem(LS_KEY);if(s)return JSON.parse(s);}catch(e){}return WL_STOCKS.map(s=>s.ticker);})();
-let scoreMap=Object.fromEntries(WL_STOCKS.map(s=>[s.ticker,s]));
-// 合并 localStorage 里的实时评分（覆盖 ranked.json 里的旧数据）
-(function(){
-  try{
-    const saved=JSON.parse(localStorage.getItem('alphascout_wl_scores_v2')||'{}');
-    Object.assign(scoreMap,saved);
-  }catch(e){}
-})();
+// wlTickers 永远以服务端 WL_STOCKS 为准，保证所有终端顺序一致
+let wlTickers=WL_STOCKS.map(s=>s.ticker);
+let // 评分数据全部来自服务端 WL_STOCKS，不依赖本地缓存
+scoreMap=Object.fromEntries(WL_STOCKS.map(s=>[s.ticker,s]));
 let activeSector='ALL',expandedTick=null,explainTarget=null;
 
 function cls(v){
@@ -537,16 +531,10 @@ function renderModalList(){
   if(!wlTickers.length)list.innerHTML='<div style="color:var(--ink4);font-size:11px;padding:8px 0">暂无自选股</div>';
 }
 
-function saveWL(){localStorage.setItem(LS_KEY,JSON.stringify(wlTickers));}
 
-const LS_SCORES_KEY='alphascout_wl_scores_v2';
 
-function loadWLScores(){
-  try{const s=localStorage.getItem(LS_SCORES_KEY);if(s)return JSON.parse(s);}catch(e){}
-  return {};
-}
-function saveWLScores(scores){
-  localStorage.setItem(LS_SCORES_KEY,JSON.stringify(scores));
+
+function loadWLScores(){  return {};
 }
 
 // 前端打分公式（复现 Python scoring.py）
@@ -598,96 +586,20 @@ function calcScores(ind, rs){
   };
 }
 
-async function fetchAndScoreTicker(tick){
-  const key=FINNHUB_KEY;
-  const base='https://finnhub.io/api/v1';
-  setMsg('正在拉取 '+tick+' 数据…');
-  try{
-    const [mRes,eRes,rRes]=await Promise.all([
-      fetch(base+'/stock/metric?symbol='+tick+'&metric=all&token='+key).then(r=>r.json()),
-      fetch(base+'/stock/earnings?symbol='+tick+'&token='+key).then(r=>r.json()),
-      fetch(base+'/stock/recommendation?symbol='+tick+'&token='+key).then(r=>r.json()),
-    ]);
-    const m=mRes.metric||{};
-    // 提取关键指标
-    const ind={
-      rev_accel_pp:   m.revenueGrowthQuarterlyYoy!=null&&m.revenueGrowthTTMYoy!=null
-                      ?(m.revenueGrowthQuarterlyYoy-m.revenueGrowthTTMYoy)*100:null,
-      eps_accel_pp:   m.epsGrowthQuarterlyYoy!=null&&m.epsGrowthTTMYoy!=null
-                      ?(m.epsGrowthQuarterlyYoy-m.epsGrowthTTMYoy)*100:null,
-      gm_expansion:   m.grossMarginTTM!=null&&m.grossMargin5Y!=null
-                      ?m.grossMarginTTM-m.grossMargin5Y:null,
-      fcf_accel:      null,
-      fcf_yoy:        null,
-      fcf_cagr:       null,
-      fcf_conv:       null,
-      gross_margin:   m.grossMarginTTM??null,
-      op_margin:      m.operatingMarginTTM??null,
-      surprise_pct:   Array.isArray(eRes)&&eRes.length>0?eRes[0].surprisePercent??null:null,
-      surprise_streak:Array.isArray(eRes)?eRes.filter(e=>e.surprisePercent>0).length:null,
-      analyst_bull:   (()=>{
-        if(!Array.isArray(rRes)||!rRes.length) return null;
-        const r0=rRes[0];
-        const total=(r0.buy||0)+(r0.hold||0)+(r0.sell||0)+(r0.strongBuy||0)+(r0.strongSell||0);
-        return total>0?((r0.buy||0)+(r0.strongBuy||0))/total*100:null;
-      })(),
-      fcf_ttm_m: m.freeCashFlowTTM??null,
-      gross_margin_pct: m.grossMarginTTM??null,
-      op_margin_pct: m.operatingMarginTTM??null,
-    };
-
-    const scores=calcScores(ind,null);
-    const mc=m.marketCapitalization?m.marketCapitalization*1e6:null;
-
-    // 判断数据质量
-    const validCount=[ind.gross_margin,ind.op_margin,ind.surprise_pct,
-                      ind.surprise_streak,ind.analyst_bull,ind.rev_accel_pp]
-                     .filter(v=>v!=null).length;
-    const dq=validCount>=5?'high':validCount>=3?'medium':'low';
-
-    const stockData={
-      ticker:tick, name:'', sector:'', market_cap:mc,
-      scores:scores,
-      indicators:{
-        rev_accel_pp:ind.rev_accel_pp, eps_accel_pp:ind.eps_accel_pp,
-        gross_margin_expansion_pp:ind.gm_expansion,
-        fcf_growth_accel_pp:null, fcf_growth_yoy_pct:null, fcf_cagr_3y_pct:null,
-        fcf_conversion_pct:null,
-        gross_margin_pct:ind.gross_margin, op_margin_pct:ind.op_margin,
-        earnings_surprise_pct:ind.surprise_pct, surprise_streak:ind.surprise_streak,
-        estimate_revision_ratio_pct:ind.analyst_bull, fcf_ttm_m:ind.fcf_ttm_m
-      },
-      rs:{}, data_quality:dq, risk_flags:[], in_scan:false,
-      fetched_at:new Date().toISOString()
-    };
-
-    // 存到 localStorage
-    const saved=loadWLScores();
-    saved[tick]=stockData;
-    saveWLScores(saved);
-    scoreMap[tick]=stockData;
-
-    setMsg(tick+' 评分完成: '+scores.overall.toFixed(1)+' 分 ✓');
-    renderModalList();buildWLBar();render();
-  }catch(e){
-    setMsg('拉取 '+tick+' 失败，请检查代码是否有效');
-    console.error(e);
-  }
-}
+// 评分来自服务端，无需实时拉取
 
 function addTicker(){
   const input=document.getElementById('modal-input');
   const tick=(input.value||'').trim().toUpperCase();
   if(!tick)return;
   if(wlTickers.includes(tick)){setMsg(tick+' 已存在');return;}
-  wlTickers=[...wlTickers,tick];saveWL();input.value='';
+  wlTickers=[...wlTickers,tick];input.value='';
   renderModalList();buildWLBar();render();
   // 实时拉取评分
-  fetchAndScoreTicker(tick);
 }
 
 function deleteTicker(tick){
-  wlTickers=wlTickers.filter(function(t){return t!==tick;});saveWL();
+  wlTickers=wlTickers.filter(function(t){return t!==tick;});
   renderModalList();buildWLBar();render();setMsg('已删除 '+tick);
 }
 
